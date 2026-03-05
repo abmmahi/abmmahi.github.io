@@ -19,7 +19,7 @@
 
     html {
       scroll-behavior: smooth;
-      cursor: none; /* for custom glow cursor */
+      cursor: none;
     }
 
     body {
@@ -42,7 +42,6 @@
       z-index: 9999;
       mix-blend-mode: screen;
       backdrop-filter: blur(2px);
-      transition: transform 0.1s ease;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 30px 10px #a78bfa;
     }
@@ -62,7 +61,7 @@
       pointer-events: none;
     }
 
-    /* particle overlay (subtle) */
+    /* particle overlay */
     #particles {
       position: fixed;
       top: 0;
@@ -85,6 +84,54 @@
       z-index: 9998;
       transition: width 0.1s ease;
       box-shadow: 0 0 20px #c084fc;
+    }
+
+    /* navbar */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 50px;
+      padding: 0.8rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: white;
     }
 
     /* glassmorphism reusable */
@@ -116,7 +163,6 @@
       letter-spacing: -0.02em;
     }
 
-    /* containers */
     .container {
       max-width: 1300px;
       margin: 0 auto;
@@ -124,7 +170,7 @@
     }
 
     section {
-      padding: 6rem 0;
+      padding: 8rem 0 6rem;
       position: relative;
     }
 
@@ -137,13 +183,12 @@
       font-weight: 600;
       color: #0f172a;
       font-size: 1rem;
-      letter-spacing: 0.3px;
       box-shadow: 0 15px 25px -10px #8b5cf6;
       transition: 0.25s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
     }
 
     .btn-primary:hover {
@@ -159,6 +204,10 @@
       font-weight: 500;
       color: #e2e8f0;
       transition: 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .btn-outline:hover {
@@ -184,7 +233,7 @@
       100% { transform: translateY(0px) rotate(0deg); }
     }
 
-    /* 3D rotating object (hero) */
+    /* 3D rotating object */
     .rotate-3d {
       width: 280px;
       height: 280px;
@@ -194,30 +243,26 @@
       box-shadow: 0 0 80px #c084fc, 0 0 150px #06b6d4 inset;
       transform-style: preserve-3d;
       transform: rotateX(25deg) rotateY(15deg) rotateZ(5deg);
-      transition: transform 0.1s;
     }
 
     @keyframes morph {
       0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-      25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-      50% { border-radius: 31% 69% 52% 48% / 41% 50% 50% 59%; }
-      75% { border-radius: 39% 61% 38% 62% / 73% 39% 61% 27%; }
+      50% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
       100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
     }
 
-    /* tilt project cards */
+    /* project cards */
     .project-card {
       background: rgba(15, 23, 42, 0.6);
       backdrop-filter: blur(16px);
       border: 1px solid #334155;
       border-radius: 2.2rem;
       padding: 2rem;
-      transition: transform 0.2s, box-shadow 0.3s;
-      transform-style: preserve-3d;
-      will-change: transform;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .project-card:hover {
+      transform: translateY(-10px);
       box-shadow: 0 0 35px #a78bfa70;
       border-color: #8b5cf6;
     }
@@ -231,6 +276,7 @@
       background: rgba(0,0,0,0.2);
       backdrop-filter: blur(4px);
       border-radius: 0 2rem 2rem 0;
+      padding: 1.5rem 2rem;
     }
 
     .timeline-item::before {
@@ -241,38 +287,25 @@
       border-radius: 50%;
       position: absolute;
       left: -10px;
-      top: 10px;
+      top: 20px;
       box-shadow: 0 0 25px cyan;
     }
 
-    /* footer divider */
-    .glow-divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #8b5cf6, #06b6d4, #8b5cf6, transparent);
-      width: 80%;
-      margin: 2rem auto;
-      box-shadow: 0 0 25px #a78bfa;
-    }
-
-    /* responsive */
-    @media (max-width: 768px) {
-      .section-title { font-size: 2.5rem; }
-      .hero-flex { flex-direction: column; }
-    }
-
-    /* progress bar */
+    /* skill progress */
     .skill-progress {
       background: #1e293b;
       border-radius: 999px;
       height: 8px;
       overflow: hidden;
+      margin: 0.5rem 0 1rem;
     }
+    
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #8b5cf6, #06b6d4);
       border-radius: 999px;
       width: 0%;
-      transition: width 1.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+      transition: width 1.5s ease;
       box-shadow: 0 0 20px cyan;
     }
 
@@ -286,13 +319,14 @@
       width: 100%;
       transition: 0.2s;
     }
+    
     .input-glass:focus {
       outline: none;
       border-color: #8b5cf6;
       box-shadow: 0 0 30px #a78bfa40;
     }
 
-    /* social icon buttons */
+    /* social buttons */
     .social-links {
       display: flex;
       flex-wrap: wrap;
@@ -300,10 +334,11 @@
       justify-content: center;
       margin-top: 1.5rem;
     }
+    
     .social-btn {
       background: rgba(255,255,255,0.02);
       backdrop-filter: blur(8px);
-      border: 1px solid #334155;
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 3rem;
       padding: 0.8rem 1.8rem;
       display: inline-flex;
@@ -313,8 +348,8 @@
       color: #e2e8f0;
       text-decoration: none;
       transition: 0.3s;
-      border: 1px solid rgba(139, 92, 246, 0.3);
     }
+    
     .social-btn i {
       font-size: 1.5rem;
       background: linear-gradient(135deg, #8b5cf6, #06b6d4);
@@ -322,18 +357,19 @@
       background-clip: text;
       color: transparent;
     }
+    
     .social-btn:hover {
       border-color: #8b5cf6;
       transform: translateY(-4px);
       box-shadow: 0 10px 25px -8px #a78bfa;
       background: rgba(139, 92, 246, 0.15);
     }
-    /* email button special */
+
+    /* email button */
     .email-btn {
       background: linear-gradient(145deg, #8b5cf6, #06b6d4);
       color: #0f172a;
       font-weight: 600;
-      border: none;
       padding: 0.8rem 2rem;
       border-radius: 3rem;
       display: inline-flex;
@@ -344,15 +380,32 @@
       transition: 0.3s;
       box-shadow: 0 10px 20px -5px #8b5cf6;
     }
-    .email-btn i {
-      color: #0f172a;
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-    }
+    
     .email-btn:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 30px -5px #c084fc;
+    }
+
+    /* footer */
+    .glow-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #8b5cf6, #06b6d4, #8b5cf6, transparent);
+      width: 80%;
+      margin: 2rem auto;
+      box-shadow: 0 0 25px #a78bfa;
+    }
+
+    footer {
+      padding: 2rem 0 4rem;
+      text-align: center;
+      color: #94a3b8;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .section-title { font-size: 2.5rem; }
+      .hero-flex { flex-direction: column; }
+      .navbar { display: none; }
     }
   </style>
 </head>
@@ -365,167 +418,249 @@
 
   <!-- futuristic grid -->
   <div class="grid-bg"></div>
-  <div id="particles"></div> <!-- subtle overlay -->
+  <div id="particles"></div>
 
-  <!-- floating tech icons (hero bg) -->
+  <!-- navbar -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- floating tech icons -->
   <i class="fab fa-html5 floating-icon" style="top: 15%; left: 5%; animation-delay: 0s;"></i>
-  <i class="fab fa-css3-alt floating-icon" style="top: 70%; left: 8%; animation-delay: 1.5s; color:#06b6d4;"></i>
+  <i class="fab fa-css3-alt floating-icon" style="top: 70%; left: 8%; animation-delay: 1.5s;"></i>
   <i class="fab fa-js floating-icon" style="top: 40%; right: 3%; animation-delay: 2s;"></i>
-  <i class="fab fa-git-alt floating-icon" style="bottom: 20%; right: 12%; animation-delay: 1s;"></i>
-  <i class="fas fa-brain floating-icon" style="top: 20%; right: 18%; animation-delay: 0.8s;"></i>
-  <i class="fas fa-robot floating-icon" style="bottom: 30%; left: 12%; animation-delay: 2.3s;"></i>
+  <i class="fab fa-react floating-icon" style="top: 80%; right: 10%; animation-delay: 1s;"></i>
+  <i class="fab fa-node floating-icon" style="top: 25%; right: 15%; animation-delay: 0.8s;"></i>
+  <i class="fas fa-database floating-icon" style="bottom: 30%; left: 12%; animation-delay: 2.3s;"></i>
 
-  <!-- main content -->
   <main>
     <!-- HERO SECTION -->
     <section id="home" style="min-height: 100vh; display: flex; align-items: center;">
-      <div class="container" style="width: 100%;">
-        <div class="hero-flex" style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
-          <!-- left text -->
+      <div class="container">
+        <div style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
           <div style="flex: 1 1 400px;">
-            <span class="glass-card" style="display: inline-block; padding: 0.5rem 1.8rem; border-radius: 40px; margin-bottom: 2rem; font-weight: 300;">👋 Hello, I'm</span>
-            <h1 style="font-family: 'Poppins', sans-serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; background: linear-gradient(to right, #f0f9ff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent;">ABM MAHI</h1>
-            <p style="font-size: 1.8rem; font-weight: 400; color: #94a3b8; margin: 0.5rem 0 1rem;">Computer Science Student <br> <span style="background: linear-gradient(135deg,#8b5cf6,#06b6d4); -webkit-background-clip:text; background-clip:text; color:transparent;">Future Tech Entrepreneur</span></p>
-            <p style="font-size: 1.2rem; max-width: 550px; margin: 2rem 0; color: #cbd5e1;"><i>"I love building digital products, solving problems and exploring new technologies."</i></p>
+            <span class="glass-card" style="display: inline-block; padding: 0.5rem 1.8rem; border-radius: 40px; margin-bottom: 2rem;">
+              👋 Hello, I'm
+            </span>
+            <h1 style="font-family: 'Poppins', sans-serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; background: linear-gradient(to right, #f0f9ff, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              ABM MAHI
+            </h1>
+            <p style="font-size: 1.8rem; font-weight: 400; color: #94a3b8; margin: 0.5rem 0 1rem;">
+              Computer Science Student <br> 
+              <span style="background: linear-gradient(135deg,#8b5cf6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+                Future Tech Entrepreneur
+              </span>
+            </p>
+            <p style="font-size: 1.2rem; max-width: 550px; margin: 2rem 0; color: #cbd5e1;">
+              <i>"I love building digital products, solving problems and exploring new technologies."</i>
+            </p>
             <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
               <a href="#projects" class="btn-primary"><i class="fas fa-arrow-down"></i> View Projects</a>
               <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
             </div>
           </div>
-          <!-- right 3D object + avatar hint -->
-          <div style="flex: 1 1 300px; display: flex; justify-content: center; position: relative;">
+          <div style="flex: 1 1 300px; display: flex; justify-content: center;">
             <div class="rotate-3d"></div>
-            <!-- subtle developer avatar illusion (floating) -->
-            <i class="fas fa-laptop-code" style="position: absolute; bottom: 20px; right: 30px; font-size: 3rem; color: #8b5cf6; filter: drop-shadow(0 0 15px cyan); opacity: 0.6;"></i>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION (Improved) -->
     <section id="about">
       <div class="container">
         <h2 class="section-title">About Me</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
-          <div style="flex: 2 1 300px;">
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #e2e8f0;">I am ABM MAHI, a passionate Computer Science student from Bangladesh. I enjoy learning new technologies and building creative digital solutions. My goal is to become a skilled developer and future tech entrepreneur.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+          <div>
+            <p style="font-size: 1.3rem; margin-bottom: 1.5rem; color: #cbd5e1;">
+              I'm <span style="color: #8b5cf6; font-weight: 600;">ABM MAHI</span>, a Computer Science student at Pabna Polytechnic Institute, Bangladesh. I'm passionate about creating innovative digital solutions that make a difference.
+            </p>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #94a3b8;">
+              Currently exploring the vast world of technology, I focus on building practical applications while constantly learning new skills. My journey in tech started in 2025, and since then, I've been on an exciting path of discovery and creation.
+            </p>
+            <p style="font-size: 1.1rem; color: #94a3b8;">
+              When I'm not coding, I'm either learning about emerging technologies, contributing to open source, or planning my next startup idea. I believe in the power of technology to solve real-world problems.
+            </p>
           </div>
-          <div style="flex: 3 1 400px; display: flex; flex-wrap: wrap; gap: 1.5rem;">
-            <div class="glass-card" style="flex: 1 1 150px; padding: 2rem 1.5rem; text-align: center;"><i class="fas fa-rocket" style="font-size: 2.5rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; background-clip:text; color:transparent;"></i><h3 style="margin: 0.8rem 0;">Fast Learner</h3></div>
-            <div class="glass-card" style="flex: 1 1 150px; padding: 2rem 1.5rem; text-align: center;"><i class="fas fa-lightbulb" style="font-size: 2.5rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; background-clip:text; color:transparent;"></i><h3>Problem Solver</h3></div>
-            <div class="glass-card" style="flex: 1 1 150px; padding: 2rem 1.5rem; text-align: center;"><i class="fas fa-microchip" style="font-size: 2.5rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; background-clip:text; color:transparent;"></i><h3>Tech Enthusiast</h3></div>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+            <div class="glass-card" style="padding: 2rem; text-align: center;">
+              <i class="fas fa-rocket" style="font-size: 3rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+              <h3 style="margin: 1rem 0; font-size: 1.3rem;">Fast Learner</h3>
+              <p style="color: #94a3b8;">Quickly adapt to new technologies and frameworks</p>
+            </div>
+            <div class="glass-card" style="padding: 2rem; text-align: center;">
+              <i class="fas fa-lightbulb" style="font-size: 3rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+              <h3 style="margin: 1rem 0; font-size: 1.3rem;">Problem Solver</h3>
+              <p style="color: #94a3b8;">Creative approach to complex challenges</p>
+            </div>
+            <div class="glass-card" style="padding: 2rem; text-align: center;">
+              <i class="fas fa-microchip" style="font-size: 3rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+              <h3 style="margin: 1rem 0; font-size: 1.3rem;">Tech Enthusiast</h3>
+              <p style="color: #94a3b8;">Passionate about emerging technologies</p>
+            </div>
+            <div class="glass-card" style="padding: 2rem; text-align: center;">
+              <i class="fas fa-users" style="font-size: 3rem; background: linear-gradient(#8b5cf6,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+              <h3 style="margin: 1rem 0; font-size: 1.3rem;">Team Player</h3>
+              <p style="color: #94a3b8;">Collaborate effectively in group projects</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS SECTION with animated progress -->
+    <!-- SKILLS SECTION -->
     <section id="skills">
       <div class="container">
         <h2 class="section-title">My Skills</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
           <!-- Frontend -->
           <div class="glass-card" style="padding: 2rem;">
-            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">⚡ Frontend</h3>
-            <div style="margin: 1rem 0;"><span>HTML</span><div class="skill-progress"><div class="progress-fill" style="width: 92%;"></div></div></div>
-            <div style="margin: 1rem 0;"><span>CSS</span><div class="skill-progress"><div class="progress-fill" style="width: 88%;"></div></div></div>
-            <div style="margin: 1rem 0;"><span>JavaScript</span><div class="skill-progress"><div class="progress-fill" style="width: 78%;"></div></div></div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-code" style="color: #8b5cf6;"></i> Frontend
+            </h3>
+            <div><span>HTML5</span><div class="skill-progress"><div class="progress-fill" data-width="92"></div></div></div>
+            <div><span>CSS3</span><div class="skill-progress"><div class="progress-fill" data-width="88"></div></div></div>
+            <div><span>JavaScript</span><div class="skill-progress"><div class="progress-fill" data-width="78"></div></div></div>
+            <div><span>React</span><div class="skill-progress"><div class="progress-fill" data-width="65"></div></div></div>
           </div>
           <!-- Tools -->
           <div class="glass-card" style="padding: 2rem;">
-            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">🛠️ Tools</h3>
-            <div><span>Git</span><div class="skill-progress"><div class="progress-fill" style="width: 85%;"></div></div></div>
-            <div><span>VS Code</span><div class="skill-progress"><div class="progress-fill" style="width: 95%;"></div></div></div>
-            <div><span>GitHub</span><div class="skill-progress"><div class="progress-fill" style="width: 80%;"></div></div></div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-tools" style="color: #8b5cf6;"></i> Tools
+            </h3>
+            <div><span>Git</span><div class="skill-progress"><div class="progress-fill" data-width="85"></div></div></div>
+            <div><span>VS Code</span><div class="skill-progress"><div class="progress-fill" data-width="95"></div></div></div>
+            <div><span>GitHub</span><div class="skill-progress"><div class="progress-fill" data-width="80"></div></div></div>
+            <div><span>Figma</span><div class="skill-progress"><div class="progress-fill" data-width="70"></div></div></div>
           </div>
           <!-- Learning -->
           <div class="glass-card" style="padding: 2rem;">
-            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">🧠 Learning</h3>
-            <div><span>Cybersecurity</span><div class="skill-progress"><div class="progress-fill" style="width: 60%;"></div></div></div>
-            <div><span>Backend</span><div class="skill-progress"><div class="progress-fill" style="width: 55%;"></div></div></div>
-            <div><span>AI Tools</span><div class="skill-progress"><div class="progress-fill" style="width: 70%;"></div></div></div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-book-open" style="color: #8b5cf6;"></i> Learning
+            </h3>
+            <div><span>Cybersecurity</span><div class="skill-progress"><div class="progress-fill" data-width="60"></div></div></div>
+            <div><span>Backend (Node.js)</span><div class="skill-progress"><div class="progress-fill" data-width="55"></div></div></div>
+            <div><span>AI Tools</span><div class="skill-progress"><div class="progress-fill" data-width="70"></div></div></div>
+            <div><span>Python</span><div class="skill-progress"><div class="progress-fill" data-width="50"></div></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS SECTION (tilt + glow) -->
+    <!-- PROJECTS SECTION with real links -->
     <section id="projects">
       <div class="container">
         <h2 class="section-title">Featured Projects</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;" id="projectGrid">
-          <!-- card 1 -->
-          <div class="project-card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-scale="1.02">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+          <!-- Portfolio Project -->
+          <div class="project-card">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
             <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Portfolio Website</h3>
-            <p style="color:#94a3b8;">HTML CSS JS</p>
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fas fa-external-link-alt"></i> Live</a>
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fab fa-github"></i> GitHub</a>
+            <p style="color:#94a3b8; margin-bottom: 1rem;">HTML · CSS · JavaScript</p>
+            <p style="color: #cbd5e1; margin-bottom: 2rem;">A modern, animated portfolio with glassmorphism design and smooth interactions.</p>
+            <div style="display: flex; gap: 1rem;">
+              <a href="https://abmmahi.github.io/portfolio" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/abmmahi/portfolio" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
             </div>
           </div>
-          <!-- card 2 -->
-          <div class="project-card" data-tilt data-tilt-max="10">
+          <!-- Task Manager App -->
+          <div class="project-card">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
             <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Task Manager App</h3>
-            <p style="color:#94a3b8;">JavaScript</p>
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fas fa-external-link-alt"></i> Live</a>
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fab fa-github"></i> GitHub</a>
+            <p style="color:#94a3b8; margin-bottom: 1rem;">JavaScript · LocalStorage</p>
+            <p style="color: #cbd5e1; margin-bottom: 2rem;">A full-featured task management app with dark mode and drag-drop functionality.</p>
+            <div style="display: flex; gap: 1rem;">
+              <a href="https://abmmahi.github.io/task-manager" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/abmmahi/task-manager" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
             </div>
           </div>
-          <!-- card 3 -->
-          <div class="project-card" data-tilt data-tilt-max="10">
-            <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Student Productivity</h3>
-            <p style="color:#94a3b8;">Web App</p>
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fas fa-external-link-alt"></i> Live</a>
-              <a href="#" class="btn-outline" style="padding:0.5rem 1.5rem;"><i class="fab fa-github"></i> GitHub</a>
+          <!-- Student Productivity Tool -->
+          <div class="project-card">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+            <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">StudyFlow</h3>
+            <p style="color:#94a3b8; margin-bottom: 1rem;">HTML · CSS · JS</p>
+            <p style="color: #cbd5e1; margin-bottom: 2rem;">Productivity tool for students with pomodoro timer, notes, and task tracker.</p>
+            <div style="display: flex; gap: 1rem;">
+              <a href="https://abmmahi.github.io/studyflow" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/abmmahi/studyflow" target="_blank" class="btn-outline" style="padding:0.5rem 1.5rem;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE / JOURNEY timeline -->
+    <!-- JOURNEY SECTION -->
     <section id="journey">
       <div class="container">
-        <h2 class="section-title">My journey</h2>
-        <div style="max-width: 700px;">
-          <div class="timeline-item"><span style="font-weight:700; font-size:1.5rem;">2025</span> <br>Started learning programming.</div>
-          <div class="timeline-item"><span style="font-weight:700; font-size:1.5rem;">2026</span> <br>Computer Science student at Pabna Polytechnic Institute.</div>
-          <div class="timeline-item"><span style="font-weight:700; font-size:1.5rem;">Future</span> <br>Building tech startups.</div>
+        <h2 class="section-title">My Journey</h2>
+        <div style="max-width: 700px; margin: 0 auto;">
+          <div class="timeline-item">
+            <span style="font-weight:700; font-size:1.5rem; color: #8b5cf6;">2025</span>
+            <p style="font-size: 1.1rem;">Started learning programming · Built first website · Discovered passion for coding</p>
+          </div>
+          <div class="timeline-item">
+            <span style="font-weight:700; font-size:1.5rem; color: #8b5cf6;">2026</span>
+            <p style="font-size: 1.1rem;">Computer Science student at Pabna Polytechnic Institute · Learning advanced concepts</p>
+          </div>
+          <div class="timeline-item">
+            <span style="font-weight:700; font-size:1.5rem; color: #8b5cf6;">Future</span>
+            <p style="font-size: 1.1rem;">Building tech startups · Creating innovative solutions · Making an impact</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION with functional social/email buttons -->
+    <!-- CONTACT SECTION -->
     <section id="contact">
       <div class="container">
         <h2 class="section-title">Let's Work Together</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
           <div style="flex: 1 1 300px;">
-            <form action="#" method="post">
-              <input type="text" placeholder="Name" class="input-glass" style="margin-bottom: 1.5rem;"><br>
-              <input type="email" placeholder="Email" class="input-glass" style="margin-bottom: 1.5rem;"><br>
-              <textarea rows="5" placeholder="Message" class="input-glass" style="margin-bottom: 1.5rem;"></textarea><br>
-              <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+            <form id="contactForm">
+              <input type="text" id="name" placeholder="Your Name" class="input-glass" style="margin-bottom: 1.5rem;" required>
+              <input type="email" id="email" placeholder="Your Email" class="input-glass" style="margin-bottom: 1.5rem;" required>
+              <textarea id="message" rows="5" placeholder="Your Message" class="input-glass" style="margin-bottom: 1.5rem;" required></textarea>
+              <button type="submit" class="btn-primary" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+              <div id="formMessage" style="margin-top: 1rem; color: #06b6d4;"></div>
             </form>
           </div>
           <div style="flex: 1 1 300px;">
             <div class="glass-card" style="padding: 2rem;">
               <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">Connect with me</h3>
               
-              <!-- Direct social buttons (click → open profile) -->
               <div class="social-links">
                 <a href="https://github.com/abmmahi" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.facebook.com/abulbasharmohammadmahee" target="_blank" class="social-btn"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://www.linkedin.com/in/abulbasharmohammadmahi/" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://www.instagram.com/abulbasharmohammadmahi/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.youtube.com/@abulbasharmohammadmahi" target="_blank" class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://facebook.com/abulbasharmohammadmahee" target="_blank" class="social-btn"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://linkedin.com/in/abulbasharmohammadmahi" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://instagram.com/abulbasharmohammadmahi" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://youtube.com/@abulbasharmohammadmahi" target="_blank" class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
               </div>
               
-              <!-- Direct email button -->
               <div style="text-align: center; margin-top: 2rem;">
-                <a href="abmmahee@gmail.com" class="email-btn"><i class="fas fa-envelope"></i> Email me directly</a>
+                <a href="mailto:abmmahee@gmail.com" class="email-btn">
+                  <i class="fas fa-envelope"></i> abmmahee@gmail.com
+                </a>
               </div>
             </div>
           </div>
@@ -534,18 +669,19 @@
     </section>
 
     <!-- FOOTER -->
-    <footer style="padding: 2rem 0 4rem;">
+    <footer>
       <div class="glow-divider"></div>
-      <div class="container" style="text-align: center; color:#94a3b8;">
-        <p>© 2026 ABM MAHI <br> Built with passion and curiosity.</p>
+      <div class="container">
+        <p style="font-size: 1.1rem;">© 2026 ABM MAHI · All rights reserved</p>
+        <p style="margin-top: 0.5rem; color: #64748b;">Built with passion, curiosity, and lots of chai ☕</p>
       </div>
     </footer>
   </main>
 
-  <!-- vanilla tilt + smooth scroll + glow effect -->
+  <!-- JavaScript (very important) -->
   <script>
     (function() {
-      // cursor glow
+      // Custom cursor glow
       const cursor = document.getElementById('glowCursor');
       document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
@@ -554,7 +690,7 @@
       document.addEventListener('mouseenter', () => cursor.style.opacity = 1);
       document.addEventListener('mouseleave', () => cursor.style.opacity = 0);
 
-      // scroll progress
+      // Scroll progress bar
       const progress = document.getElementById('progressBar');
       window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
@@ -563,39 +699,151 @@
         progress.style.width = scrolled + '%';
       });
 
-      // simple parallax + tilt for project cards
-      const cards = document.querySelectorAll('.project-card');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = (y - centerY) / 15;
-          const rotateY = (centerX - x) / 15;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      // Animate skill bars when they come into view
+      const skillBars = document.querySelectorAll('.progress-fill');
+      
+      const animateSkills = () => {
+        skillBars.forEach(bar => {
+          const barPosition = bar.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if (barPosition < screenPosition) {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width + '%';
+          }
         });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-        });
-      });
+      };
 
-      // smooth anchor links
+      window.addEventListener('scroll', animateSkills);
+      window.addEventListener('load', animateSkills);
+
+      // Contact form handling
+      const contactForm = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const formMessage = document.getElementById('formMessage');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const message = document.getElementById('message').value;
+          
+          // Simple validation
+          if (!name || !email || !message) {
+            formMessage.style.color = '#ef4444';
+            formMessage.textContent = 'Please fill in all fields';
+            return;
+          }
+          
+          if (!email.includes('@') || !email.includes('.')) {
+            formMessage.style.color = '#ef4444';
+            formMessage.textContent = 'Please enter a valid email';
+            return;
+          }
+          
+          // Show loading state
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+          submitBtn.disabled = true;
+          
+          // Simulate form submission (replace with actual API endpoint)
+          setTimeout(() => {
+            formMessage.style.color = '#06b6d4';
+            formMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+            contactForm.reset();
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            submitBtn.disabled = false;
+          }, 1500);
+        });
+      }
+
+      // Smooth scrolling for nav links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
-          if(target) target.scrollIntoView({ behavior: 'smooth' });
+          if(target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
         });
       });
+
+      // Active nav link highlighting
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.style.color = '#8b5cf6';
+          } else {
+            link.style.color = '#e2e8f0';
+          }
+        });
+      });
+
+      // Parallax effect for floating icons
+      document.addEventListener('mousemove', (e) => {
+        const icons = document.querySelectorAll('.floating-icon');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        icons.forEach(icon => {
+          const speed = 20;
+          const x = (mouseX * speed) - (speed / 2);
+          const y = (mouseY * speed) - (speed / 2);
+          icon.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+
+      // Typing effect for hero section
+      const tagline = document.querySelector('#home p i');
+      const originalText = tagline.textContent;
+      tagline.textContent = '';
+      
+      let i = 0;
+      const typeWriter = () => {
+        if (i < originalText.length) {
+          tagline.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      };
+      
+      window.addEventListener('load', typeWriter);
     })();
   </script>
-  <!-- simple parallax scroll (via background shift) -->
+
   <style>
-    #home { background-attachment: fixed; }
-    section { transition: background 0.3s; }
-    .project-card { transition: transform 0.1s, box-shadow 0.3s; }
+    /* Additional styles */
+    .nav-links a.active {
+      color: #8b5cf6;
+    }
+    #submitBtn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .fa-spinner {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #home {
+      background-attachment: fixed;
+    }
   </style>
 </body>
 </html>
