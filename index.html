@@ -1,430 +1,1025 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABM MAHI · portfolio</title>
-    <!-- Font Awesome 5 (free) -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <!-- Google Fonts: Inter + space for quote -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABM MAHI · CSE Student & Problem Solver</title>
+  <!-- Google Fonts: Inter + Space Grotesk for strong typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: "Inter", system-ui, sans-serif;
-            background: #f4f7fc;
-            color: #1e293b;
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
-            overflow: hidden;
-            padding: 2.5rem 2.2rem;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #030303;
+      color: #ffffff;
+      line-height: 1.6;
+    }
 
-        /* header / identity */
-        .identity {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            border-bottom: 2px dashed #cbd5e1;
-            padding-bottom: 1.8rem;
-        }
+    :root {
+      --bg-primary: #030303;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #0c0c0c;
+      --accent-primary: #2de2e6;
+      --accent-secondary: #ffd166;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #6b6b6b;
+      --border-color: #1f1f1f;
+      --gradient-1: linear-gradient(135deg, #2de2e6 0%, #4cc9f0 100%);
+      --gradient-2: linear-gradient(135deg, #ffd166 0%, #fca311 100%);
+      --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 8px 30px rgba(45, 226, 230, 0.1);
+    }
 
-        .name-title h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            background: linear-gradient(145deg, #0f2b4b, #1e4a6f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
+    /* ---------- TYPOGRAPHY ---------- */
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-        .name-title .badge {
-            background: #e9f0fa;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1e4a6f;
-            display: inline-block;
-            margin-top: 0.3rem;
-        }
+    h1 {
+      font-size: clamp(3rem, 10vw, 5rem);
+      line-height: 1.0;
+      margin-bottom: 0.8rem;
+    }
 
-        .contact-quick {
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
 
-        .contact-quick a {
-            color: #1e4a6f;
-            background: #f0f6ff;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+    }
 
-        .contact-quick a:hover {
-            background: #1e4a6f;
-            color: white;
-            transform: translateY(-3px);
-        }
+    /* ---------- LAYOUT ---------- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-        /* tagline / quote */
-        .highlight-quote {
-            background: #f0f9ff;
-            padding: 2rem 2rem;
-            border-radius: 2rem;
-            margin: 2rem 0 2.5rem 0;
-            border-left: 8px solid #1e4a6f;
-            font-style: italic;
-            font-weight: 400;
-            font-size: 1.5rem;
-            color: #164863;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
+    section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-        .highlight-quote i {
-            color: #1e4a6f;
-            margin-right: 10px;
-        }
+    .section-header {
+      margin-bottom: 3rem;
+    }
 
-        /* grid sections */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2.5rem 0;
-        }
+    /* ---------- BUTTONS (STRONG & BEAUTIFUL) ---------- */
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      margin: 2.5rem 0 1rem;
+      flex-wrap: wrap;
+    }
 
-        .card {
-            background: #f9fcff;
-            border-radius: 2rem;
-            padding: 1.8rem 2rem;
-            border: 1px solid #e2edf5;
-            transition: 0.15s;
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
 
-        .card:hover {
-            border-color: #b9d7ec;
-            background: #ffffff;
-        }
+    .btn-primary {
+      background: var(--gradient-1);
+      color: #030303;
+      box-shadow: 0 10px 20px -5px rgba(45, 226, 230, 0.3);
+    }
 
-        .card h3 {
-            font-size: 1.7rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            border-bottom: 3px solid #cbe0f0;
-            padding-bottom: 0.6rem;
-        }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px -5px rgba(45, 226, 230, 0.5);
+    }
 
-        .card h3 i {
-            color: #1e4a6f;
-            font-size: 1.8rem;
-        }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--accent-secondary);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
 
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem 1.2rem;
-        }
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--gradient-2);
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
 
-        .skill-tag {
-            background: white;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            box-shadow: 0 2px 5px #e0ecf5;
-            border: 1px solid #cde1ef;
-        }
+    .btn-secondary:hover::before {
+      width: 100%;
+    }
 
-        .skill-tag.beginner {
-            border-left: 5px solid #a0c4e2;
-        }
-        .skill-tag.good {
-            border-left: 5px solid #1e4a6f;
-            font-weight: 600;
-        }
-        .wish-list {
-            margin-top: 1.5rem;
-            background: #e4f0fa;
-            padding: 1.3rem 1.5rem;
-            border-radius: 1.5rem;
-        }
-        .wish-list p {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .wish-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1rem;
-        }
-        .wish-items span {
-            background: white;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+    .btn-secondary:hover {
+      color: #030303;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
 
-        /* project cards */
-        .project-collection {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin: 1.8rem 0;
-        }
+    /* ---------- HERO SECTION (STRONG) ---------- */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .project-item {
-            background: white;
-            padding: 1.5rem 1.2rem;
-            border-radius: 1.8rem;
-            border: 1px solid #dae9f2;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.02);
-        }
-        .project-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-        .project-item p {
-            font-size: 0.95rem;
-            color: #334155;
-        }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(45, 226, 230, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
 
-        /* journey / mindset */
-        .story-block {
-            background: linear-gradient(135deg, #f1f9ff 0%, #ffffff 80%);
-            border-radius: 2rem;
-            padding: 2rem 2rem;
-            margin: 2rem 0 1.5rem;
-        }
+    .hero-content {
+      max-width: 800px;
+    }
 
-        .personal-mindset {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 500;
+    }
 
-        .chip {
-            background: #ddeeff;
-            color: #003b66;
-            font-weight: 500;
-            padding: 0.4rem 1.3rem;
-            border-radius: 40px;
-            font-size: 1rem;
-        }
+    .hero-name {
+      font-size: clamp(4rem, 12vw, 6rem);
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .footer-domain {
-            margin-top: 3rem;
-            border-top: 2px solid #dcebf5;
-            padding-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .hero-tagline {
+      font-size: 1.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
 
-        .email-box {
-            font-size: 1.2rem;
-            background: #f0f6fd;
-            padding: 0.5rem 1.8rem;
-            border-radius: 60px;
-        }
-        .email-box i {
-            margin-right: 10px;
-            color: #1e4a6f;
-        }
+    .hero-quote {
+      font-size: 1.4rem;
+      border-left: 5px solid var(--accent-secondary);
+      padding-left: 2rem;
+      margin: 2rem 0;
+      color: #e0e0e0;
+      font-style: italic;
+      background: rgba(255, 209, 102, 0.05);
+      padding: 1.5rem 2rem;
+      border-radius: 0 20px 20px 0;
+    }
 
-        .future-domain {
-            background: #0a1c2f;
-            color: white;
-            padding: 0.5rem 1.8rem;
-            border-radius: 60px;
-            font-weight: 500;
-        }
+    .hero-badges {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
 
-        .small-note {
-            font-size: 0.95rem;
-            color: #5e6f88;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
+    .badge {
+      background: rgba(45, 226, 230, 0.1);
+      border: 1px solid rgba(45, 226, 230, 0.3);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+    }
 
-        /* responsive */
-        @media (max-width: 700px) {
-            .container { padding: 1.5rem; }
-            .identity { flex-direction: column; align-items: start; gap: 1rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .highlight-quote { font-size: 1.2rem; }
-        }
-    </style>
+    /* ---------- PHOTO PLACEHOLDER (PROFESSIONAL) ---------- */
+    .photo-frame {
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 300px;
+      height: 400px;
+      background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+      border-radius: 30px;
+      border: 1px solid #333;
+      box-shadow: 20px 20px 40px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .photo-frame i {
+      font-size: 6rem;
+      color: #333;
+    }
+
+    .photo-frame span {
+      color: #555;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    /* ---------- GRIDS ---------- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ---------- CARDS (MODERN & STRONG) ---------- */
+    .card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #2a2a2a;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skill-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .skill-level {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 0.2rem 0.8rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 6px;
+      background: #2a2a2a;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--gradient-1);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1s ease;
+    }
+
+    .future-skill {
+      background: rgba(45, 226, 230, 0.05);
+      border: 1px dashed #2de2e6;
+    }
+
+    /* ---------- PROJECT CARDS ---------- */
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      transition: 0.3s;
+    }
+
+    .project-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tag {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ---------- JOURNEY TIMELINE ---------- */
+    .journey-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-size: 4rem;
+      color: var(--accent-primary);
+      opacity: 0.3;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .journey-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---------- VISION SECTION ---------- */
+    .vision-card {
+      background: linear-gradient(145deg, #0c0c0c, #050505);
+      border-radius: 30px;
+      padding: 3rem;
+      border: 1px solid #2de2e6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(45,226,230,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .domain-badge {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: rgba(45,226,230,0.1);
+      border: 1px solid #2de2e6;
+      border-radius: 50px;
+      color: #2de2e6;
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
+    /* ---------- CONTACT SECTION ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      background: var(--bg-card);
+      border-radius: 30px;
+      padding: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(45,226,230,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2de2e6;
+      font-size: 1.3rem;
+    }
+
+    .contact-text {
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      border: 1px solid #333;
+    }
+
+    .social-link:hover {
+      background: #2de2e6;
+      color: #030303;
+      transform: translateY(-3px);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      background: #050505;
+    }
+
+    .footer-text {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 968px) {
+      .grid-2, .grid-3, .grid-4, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .photo-frame {
+        display: none;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-name {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 0;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* ---------- UTILITY ---------- */
+    .text-gradient {
+      background: linear-gradient(135deg, #2de2e6, #4cc9f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .mt-2 {
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <!-- HEADER with name & quick social -->
-    <div class="identity">
-        <div class="name-title">
-            <h1>ABM MAHI</h1>
-            <div class="badge">
-                <i class="fas fa-graduation-cap" style="margin-right: 6px;"></i>CSE student · Pabna Polytechnic
-            </div>
-            <div style="margin-top: 0.8rem; display: flex; gap: 8px; flex-wrap: wrap;">
-                <span class="chip"><i class="fas fa-code"></i> problem solver</span>
-                <span class="chip"><i class="fas fa-pen-fancy"></i> creative thinker</span>
-                <span class="chip"><i class="fas fa-rocket"></i> future-focused</span>
-            </div>
+  <!-- HERO SECTION - STRONG & IMPACTFUL -->
+  <section class="hero" style="padding: 2rem 0;">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-subtitle">CSE STUDENT & PROBLEM SOLVER</div>
+        <h1 class="hero-name">ABM MAHI</h1>
+        <div class="hero-tagline">Building ideas that matter</div>
+        
+        <div class="hero-quote">
+          <i class="fas fa-quote-left" style="color: var(--accent-secondary); opacity: 0.5; margin-right: 10px;"></i>
+          I believe small ideas can build big futures.
         </div>
-        <div class="contact-quick">
-            <a href="mailto:abmmahee@gmail.com" aria-label="email"><i class="fas fa-envelope"></i></a>
-            <a href="#" aria-label="facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="linkedin"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="github"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
-
-    <!-- QUOTE + introduction short -->
-    <div class="highlight-quote">
-        <i class="fas fa-quote-left"></i> I believe small ideas can build big futures. 
-        <span style="display: block; margin-top: 1rem; font-size: 1.2rem; font-style: normal; font-weight: 300;">
-            I'm ABM MAHI (Mahee) — CSE student, passionate about tech, creative thinking, and building digital projects that matter.
-        </span>
-    </div>
-
-    <!-- TWO COLUMN: interests + mindset / skills -->
-    <div class="grid-2">
-        <!-- left: Interests & mindset -->
-        <div class="card">
-            <h3><i class="fas fa-brain"></i> mind & interests</h3>
-            <p style="margin-bottom: 1rem;"><strong>mindset:</strong> “Small daily steps, big future. Curiosity + consistency.”</p>
-            <div style="margin-bottom: 1.8rem;">
-                <span class="skill-tag"><i class="fas fa-heart" style="color:#1e4a6f;"></i> technology</span>
-                <span class="skill-tag">programming</span>
-                <span class="skill-tag">problem solving</span>
-                <span class="skill-tag">creative thinking</span>
-                <span class="skill-tag">story writing</span>
-                <span class="skill-tag">digital creation</span>
-            </div>
-            <p><i class="fas fa-user-tie" style="color:#1e4a6f; margin-right: 6px;"></i> <strong>personal brand:</strong> curious · creative · analytical · future-focused</p>
-            <p style="margin-top: 0.8rem;"><i class="fas fa-tag"></i> <em>CSE student & problem solver</em></p>
-        </div>
-        <!-- right: skills now & learning goals -->
-        <div class="card">
-            <h3><i class="fas fa-cogs"></i> current skills</h3>
-            <div style="margin-bottom: 1.2rem;">
-                <span class="skill-tag beginner">HTML (beginner)</span>
-                <span class="skill-tag beginner">video editing (beginner)</span>
-                <span class="skill-tag good">story writing (good)</span>
-                <span class="skill-tag good">idea development</span>
-                <span class="skill-tag good">problem solving</span>
-            </div>
-            <div class="wish-list">
-                <p><i class="fas fa-star"></i> learning next:</p>
-                <div class="wish-items">
-                    <span>Cybersecurity</span>
-                    <span>AI / Artificial Intelligence</span>
-                    <span>Full Stack Web Dev</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PROJECTS section -->
-    <div style="margin: 2rem 0 0.5rem;">
-        <h3 style="font-size: 1.8rem; display: flex; gap: 0.5rem;"><i class="fas fa-folder-open" style="color: #1e4a6f;"></i> things i've built / creating</h3>
-    </div>
-    <div class="project-collection">
-        <div class="project-item">
-            <h4>📁 portfolio website</h4>
-            <p>personal website to showcase journey, skills & future vision. (you're here!)</p>
-        </div>
-        <div class="project-item">
-            <h4>🎨 brand logo design</h4>
-            <p>logos & visual identity for brands and personal projects.</p>
-        </div>
-        <div class="project-item">
-            <h4>🤖 AI video creation</h4>
-            <p>using AI tools to create engaging, creative video content.</p>
-        </div>
-    </div>
-
-    <!-- MY JOURNEY + VISION combined card -->
-    <div class="story-block">
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-            <div style="flex: 1 1 250px;">
-                <h3><i class="fas fa-road"></i> my journey</h3>
-                <p>Curiosity about digital systems & websites led me to study CSE. Currently in early stage — but committed to learning & building meaningful projects. <span style="display: inline-block; background: #1e4a6f; color: white; padding: 0.1rem 1rem; border-radius: 30px; font-size: 0.85rem; margin-left: 0.5rem;">step by step</span></p>
-            </div>
-            <div style="flex: 1 1 250px;">
-                <h3><i class="fas fa-eye"></i> long‑term vision</h3>
-                <p>Build a technology company that impacts millions. Innovative digital solutions that solve real problems & make tech accessible.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- small mindset / quote repetition but personal -->
-    <div style="background: #ffffff; border-radius: 2rem; padding: 1.5rem 2rem; border: 1px solid #cbe0f0; margin: 1.8rem 0;">
-        <p><i class="fas fa-seedling" style="color: #1e4a6f; margin-right: 10px;"></i> <strong>personal mindset:</strong> “Great things often start from small ideas. I focus on learning, building skills, and improving every day.”</p>
-    </div>
-
-    <!-- CONTACT + future domain & email -->
-    <div class="footer-domain">
-        <div class="email-box">
-            <i class="fas fa-envelope"></i> abmmahee@gmail.com
-        </div>
-        <div class="future-domain">
-            <i class="fas fa-globe"></i> abmmahi.com (future)
-        </div>
-    </div>
-
-    <!-- Social platforms text + closing -->
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin: 1.5rem 0 1rem;">
-        <span style="font-weight: 400;"><i class="fab fa-facebook"></i> Facebook  ·  <i class="fab fa-instagram"></i> Instagram  ·  <i class="fab fa-linkedin"></i> LinkedIn  ·  <i class="fab fa-github"></i> GitHub</span>
-        <span class="badge" style="background: #deecf9;"><i class="fas fa-smile"></i> #smallIdeasBigFutures</span>
-    </div>
-
-    <!-- CLOSING THOUGHT (exactly from profile) -->
-    <div style="background: #f2f8ff; border-radius: 3rem; padding: 1.8rem 2rem; margin-top: 2rem; text-align: center; border: 2px dotted #aac7df;">
-        <p style="font-size: 1.3rem; font-weight: 400;"><i class="fas fa-quote-right" style="color: #1e4a6f;"></i> 
-        I am still at the beginning of my journey, but I believe that consistent learning, creative thinking, and strong determination can lead to meaningful achievements in the future.
+        
+        <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px;">
+          I am a Computer Science student from Bangladesh who loves technology, 
+          creative thinking, and problem solving. Currently learning, building, 
+          and preparing to create meaningful impact.
         </p>
-        <p style="margin-top: 1rem;">— ABM MAHI (Mahee)</p>
+        
+        <div class="hero-badges">
+          <span class="badge"><i class="fas fa-code"></i> HTML</span>
+          <span class="badge"><i class="fas fa-pencil-alt"></i> Story Writing</span>
+          <span class="badge"><i class="fas fa-lightbulb"></i> Problem Solver</span>
+        </div>
+        
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-arrow-down"></i> View Projects
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i class="fas fa-paper-plane"></i> Contact Me
+          </a>
+        </div>
+      </div>
+      
+      <!-- Professional Photo Placeholder -->
+      <div class="photo-frame float">
+        <i class="fas fa-user-circle"></i>
+        <span>PROFESSIONAL PHOTO</span>
+        <span style="font-size: 0.7rem;">ABM MAHI</span>
+      </div>
     </div>
+  </section>
 
-    <!-- micro footer -->
-    <div class="small-note">
-        <i class="fas fa-code"></i> portfolio built with intention · Pabna Polytechnic Institute · Bangladesh
+  <!-- ABOUT SECTION - DETAILED & PERSONAL -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Me</h2>
+      </div>
+      
+      <div class="grid-2">
+        <div>
+          <div class="card" style="padding: 2.5rem;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">👋 I'm Mahee</h3>
+            <p style="font-size: 1.1rem; color: #d0d0d0; margin-bottom: 1.5rem;">
+              I am a Computer Science student at <strong style="color: #fff;">Pabna Polytechnic Institute</strong> in Bangladesh. 
+              Technology isn't just my field of study—it's my passion and my creative outlet.
+            </p>
+            <p style="font-size: 1.1rem; color: #d0d0d0; margin-bottom: 1.5rem;">
+              I enjoy exploring ideas, building digital projects, and learning new skills 
+              that can help create useful technology. My goal is to grow step by step as 
+              a developer and eventually build something meaningful that can impact many people.
+            </p>
+            
+            <div style="margin-top: 2rem;">
+              <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Personal Mindset</h4>
+              <p style="color: #aaa; font-style: italic;">
+                "I believe that great things often start from small ideas. Instead of rushing for quick success, 
+                I prefer to focus on learning, building skills, and improving myself every day. 
+                Curiosity and consistency drive my learning journey."
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="card" style="padding: 2.5rem;">
+            <h4 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Quick Info</h4>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+              <div style="display: flex;">
+                <span style="width: 100px; color: #888;">Full Name:</span>
+                <span style="color: #fff;">ABM MAHI</span>
+              </div>
+              <div style="display: flex;">
+                <span style="width: 100px; color: #888;">Preferred:</span>
+                <span style="color: #fff;">Mahee</span>
+              </div>
+              <div style="display: flex;">
+                <span style="width: 100px; color: #888;">Role:</span>
+                <span style="color: #fff;">Student</span>
+              </div>
+              <div style="display: flex;">
+                <span style="width: 100px; color: #888;">Country:</span>
+                <span style="color: #fff;">Bangladesh</span>
+              </div>
+              <div style="display: flex;">
+                <span style="width: 100px; color: #888;">Education:</span>
+                <span style="color: #fff;">Diploma in CSE</span>
+              </div>
+            </div>
+            
+            <hr style="border: 1px solid #222; margin: 2rem 0;">
+            
+            <h4 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Interests</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+              <span class="badge">Technology</span>
+              <span class="badge">Programming</span>
+              <span class="badge">Problem Solving</span>
+              <span class="badge">Creative Thinking</span>
+              <span class="badge">Story Writing</span>
+              <span class="badge">Digital Creation</span>
+            </div>
+            
+            <hr style="border: 1px solid #222; margin: 2rem 0;">
+            
+            <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Personal Brand</h4>
+            <div style="font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              CSE Student & Problem Solver
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem; color: #888;">
+              <span>#Curious</span>
+              <span>#Creative</span>
+              <span>#Analytical</span>
+              <span>#Future-Focused</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<!-- end container -->
+  </section>
+
+  <!-- SKILLS SECTION - CURRENT & FUTURE -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2>Skills & Learning Goals</h2>
+      </div>
+      
+      <div style="margin-bottom: 3rem;">
+        <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #fff;">Current Skills</h3>
+        <div class="grid-2">
+          <!-- Technical Skills -->
+          <div>
+            <h4 style="margin-bottom: 1.5rem; color: var(--accent-primary);">Technical Skills</h4>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="skill-card">
+                <div class="skill-header">
+                  <span class="skill-name">HTML</span>
+                  <span class="skill-level">Beginner / Intermediate</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 45%;"></div>
+                </div>
+              </div>
+              
+              <div class="skill-card">
+                <div class="skill-header">
+                  <span class="skill-name">Video Editing</span>
+                  <span class="skill-level">Beginner</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 25%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Creative Skills -->
+          <div>
+            <h4 style="margin-bottom: 1.5rem; color: var(--accent-secondary);">Creative Skills</h4>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="skill-card">
+                <div class="skill-header">
+                  <span class="skill-name">Story Writing</span>
+                  <span class="skill-level">Good</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+              </div>
+              
+              <div class="skill-card">
+                <div class="skill-header">
+                  <span class="skill-name">Idea Development</span>
+                  <span class="skill-level">Strong</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+              </div>
+              
+              <div class="skill-card">
+                <div class="skill-header">
+                  <span class="skill-name">Problem Solving</span>
+                  <span class="skill-level">Analytical</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 70%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Future Skills -->
+      <div>
+        <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #fff;">🚀 Future Learning Goals</h3>
+        <div class="grid-3">
+          <div class="skill-card future-skill">
+            <div class="skill-header">
+              <span class="skill-name">Cybersecurity</span>
+              <span class="skill-level">Next</span>
+            </div>
+            <p style="color: #888; font-size: 0.9rem;">Security & ethical hacking</p>
+          </div>
+          
+          <div class="skill-card future-skill">
+            <div class="skill-header">
+              <span class="skill-name">Artificial Intelligence</span>
+              <span class="skill-level">Future</span>
+            </div>
+            <p style="color: #888; font-size: 0.9rem;">ML, AI solutions</p>
+          </div>
+          
+          <div class="skill-card future-skill">
+            <div class="skill-header">
+              <span class="skill-name">Full Stack Development</span>
+              <span class="skill-level">Vision</span>
+            </div>
+            <p style="color: #888; font-size: 0.9rem;">MERN, modern web</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2>Projects</h2>
+      </div>
+      
+      <div class="grid-3">
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="project-title">Portfolio Website</h3>
+          <p class="project-desc">A personal website to showcase my journey, skills, and future vision. Built with HTML, CSS, and minimal JavaScript.</p>
+          <span class="project-tag">Web Development</span>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3 class="project-title">Brand Logo Design</h3>
+          <p class="project-desc">Creating logos and visual identity for brands and personal projects. Focus on minimal, meaningful design.</p>
+          <span class="project-tag">Creative</span>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3 class="project-title">AI Video Creation</h3>
+          <p class="project-desc">Using AI tools to create engaging and creative video content. Exploring the intersection of AI and creativity.</p>
+          <span class="project-tag">AI / Creative</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY SECTION -->
+  <section id="journey">
+    <div class="container">
+      <div class="section-header">
+        <h2>My Journey</h2>
+      </div>
+      
+      <div class="journey-card">
+        <div class="quote-mark">"</div>
+        <p class="journey-text">
+          My interest in technology started with curiosity about how digital systems and websites work. 
+          That curiosity led me to study Computer Science and begin learning programming and other digital skills. 
+          I am currently in the early stage of my journey, but I am committed to learning continuously 
+          and building meaningful projects. Every line of code I write brings me closer to my dream of 
+          creating technology that matters.
+        </p>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 50px; height: 50px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-rocket" style="color: var(--accent-primary);"></i>
+          </div>
+          <div>
+            <div style="font-weight: 600;">ABM MAHI</div>
+            <div style="color: #888; font-size: 0.9rem;">CSE Student · Pabna Polytechnic Institute</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION SECTION -->
+  <section id="vision">
+    <div class="container">
+      <div class="section-header">
+        <h2>Vision</h2>
+      </div>
+      
+      <div class="vision-card">
+        <div style="max-width: 800px;">
+          <h3 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Building the future</h3>
+          <p style="font-size: 1.3rem; color: #d0d0d0; margin-bottom: 2rem;">
+            My long-term vision is to build a technology company that impacts millions of people. 
+            I want to create innovative digital solutions that solve real-world problems and make 
+            technology more useful and accessible for everyone.
+          </p>
+          <div class="domain-badge">
+            <i class="fas fa-globe"></i> Future Domain: abmmahi.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contact</h2>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3 style="font-size: 1.8rem; margin-bottom: 2rem;">Let's connect</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <div style="color: #888; font-size: 0.9rem;">Email</div>
+              <div class="contact-text">abmmahee@gmail.com</div>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <div style="color: #888; font-size: 0.9rem;">Location</div>
+              <div class="contact-text">Bangladesh</div>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div>
+              <div style="color: #888; font-size: 0.9rem;">Future Domain</div>
+              <div class="contact-text">abmmahi.com</div>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-info" style="background: linear-gradient(145deg, #0a0a0a, #020202); border: 1px solid #2de2e6;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Closing Thought</h3>
+          <p style="font-size: 1.2rem; color: #ccc; font-style: italic;">
+            "I am still at the beginning of my journey, but I believe that consistent learning, 
+            creative thinking, and strong determination can lead to meaningful achievements in the future."
+          </p>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <span style="color: #2de2e6;">✦</span>
+            <span style="color: #888;">ABM MAHI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-text">
+        <p>© 2026 ABM MAHI · Future Tech Entrepreneur</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">CSE Student & Problem Solver · Pabna Polytechnic Institute · Bangladesh</p>
+        <p style="margin-top: 1.5rem;">
+          <i class="fas fa-code"></i> Built with minimalism and purpose
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JavaScript for skill bar animation -->
+  <script>
+    // Simple intersection observer to animate skill bars when they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Get the width from the style attribute
+            const width = entry.target.style.width;
+            entry.target.style.width = '0%';
+            setTimeout(() => {
+              entry.target.style.width = width;
+            }, 100);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      skillBars.forEach(bar => observer.observe(bar));
+    });
+  </script>
 </body>
 </html>
