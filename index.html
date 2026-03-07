@@ -1,267 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABM MAHI | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABM MAHI · cyberfolio</title>
+    <!-- fonts & icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-<style>
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        /* neon color vars */
+        :root {
+            --primary: #00ffff;
+            --secondary: #00ff9c;
+            --accent: #ff00ff;
+            --bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 30, 0.7);
+            --glow-cyan: 0 0 10px #00ffff66, 0 0 20px #00ffff33;
+            --glow-magenta: 0 0 10px #ff00ff66, 0 0 20px #ff00ff33;
+        }
 
-body{
-background:#0a0a0a;
-color:white;
-line-height:1.6;
-}
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+            box-shadow: var(--glow-cyan);
+        }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 10%;
-background:#000;
-position:sticky;
-top:0;
-}
+        /* reusable container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-transition:0.3s;
-}
+        section {
+            position: relative;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
 
-nav a:hover{
-color:#00ffff;
-}
+        /* section titles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            display: inline-block;
+            color: var(--primary);
+            text-shadow: var(--glow-cyan);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
 
-.hero{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:80px 10%;
-}
+        /* glassmorphism cards */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), var(--glow-cyan);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.hero-text h1{
-font-size:50px;
-color:#00ffff;
-}
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,255,255,0.3), 0 0 20px #00ffff;
+            border-color: var(--secondary);
+        }
 
-.hero-text h3{
-margin:10px 0;
-font-weight:300;
-}
+        /* navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--primary);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-.hero-text p{
-max-width:500px;
-}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: var(--glow-cyan);
+            letter-spacing: 2px;
+        }
 
-.hero img{
-width:260px;
-border-radius:10px;
-border:3px solid #00ffff;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
 
-.section{
-padding:80px 10%;
-}
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
 
-.section h2{
-margin-bottom:20px;
-color:#00ffff;
-}
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
 
-.skills li{
-margin:8px 0;
-}
+        /* buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
 
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+        .btn-primary {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
 
-.card{
-background:#111;
-padding:20px;
-border-radius:10px;
-transition:0.3s;
-border:1px solid #222;
-}
+        .btn-primary:hover {
+            background: var(--primary);
+            color: #0a0a0a;
+            box-shadow: 0 0 30px var(--primary);
+            transform: scale(1.05);
+        }
 
-.card:hover{
-transform:translateY(-5px);
-border-color:#00ffff;
-}
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
 
-.contact a{
-display:block;
-margin-top:10px;
-color:#00ffff;
-text-decoration:none;
-}
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+            box-shadow: 0 0 30px var(--accent);
+        }
 
-footer{
-text-align:center;
-padding:20px;
-background:#000;
-margin-top:40px;
-}
+        /* hero layout */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
 
-</style>
+        .hero-left h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
 
+        .typed-tagline {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            min-height: 3rem;
+        }
+
+        #typed-text {
+            border-right: 3px solid var(--accent);
+            padding-right: 5px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .quote {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            color: #ccc;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            font-style: italic;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: var(--glow-cyan), 0 0 50px var(--accent);
+            transition: 0.4s;
+            background: #1a1a2e;
+        }
+
+        .avatar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px var(--primary), 0 0 80px var(--accent);
+        }
+
+        /* skills grid */
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+        }
+        .skill-tag:hover {
+            background: var(--primary);
+            color: #0a0a0a;
+            box-shadow: var(--glow-cyan);
+        }
+
+        /* projects cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px var(--primary);
+        }
+        .project-card h3 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+        .project-card p {
+            color: #ddd;
+        }
+
+        /* journey & vision */
+        .text-block {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 30px;
+            border-left: 6px solid var(--accent);
+            border-right: 2px solid var(--primary);
+            box-shadow: var(--glow-magenta);
+        }
+
+        /* contact */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.3rem;
+        }
+        .contact-item i {
+            color: var(--primary);
+            font-size: 2rem;
+            width: 40px;
+            text-shadow: var(--glow-cyan);
+        }
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .social-links a {
+            color: #fff;
+            font-size: 2rem;
+            transition: 0.2s;
+            border: 1px solid var(--secondary);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.4);
+        }
+        .social-links a:hover {
+            color: #0a0a0a;
+            background: var(--secondary);
+            box-shadow: 0 0 30px var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* footer / extra glow */
+        .footer-note {
+            text-align: center;
+            padding: 2rem;
+            color: #444;
+            border-top: 1px solid var(--primary);
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-left {
+                order: 2;
+            }
+            .hero-right {
+                order: 1;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .skills-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- fixed navigation -->
+    <nav class="navbar">
+        <span class="logo">ABM MAHI</span>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#journey">Journey</a>
+            <a href="#vision">Vision</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-<header>
-<h2>ABM MAHI</h2>
-<nav>
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-<a href="#vision">Vision</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+    <!-- Hero section -->
+    <section id="home" style="padding-top: 120px;">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <h1>ABM MAHI</h1>
+                    <div class="typed-tagline">
+                        <span id="typed-text"></span><span class="cursor"></span>
+                    </div>
+                    <p style="font-size: 1.2rem; margin: 1rem 0;">I am a passionate Computer Science student who loves building ideas and solving problems with technology.</p>
+                    <div class="quote">“I believe small ideas can build big futures.”</div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <!-- avatar from dicebear (unique cyberpunk style) -->
+                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=ABMMAHI&backgroundColor=00ffff&radius=50&accessories=eyepatch&clothing=cyberpunk&facialHair=beardLight&hair=long&top=eyepatch" alt="ABM MAHI avatar" class="avatar">
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
+    <!-- About Me -->
+    <section id="about">
+        <div class="container reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card" style="max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 1.2rem;">Hello! I am <strong>ABM MAHI</strong>, a Computer Science & Engineering student currently studying at Pabna Polytechnic Institute.</p>
+                <p style="margin: 1.2rem 0;">I am passionate about technology, problem-solving, and creative thinking. My interests include web development, cybersecurity, artificial intelligence, and digital creativity.</p>
+                <p>Besides coding, I enjoy story writing and exploring new ideas that can turn into meaningful technology solutions.</p>
+                <p style="margin-top: 1.5rem; color: var(--primary);">My mission is simple — to learn, build, and grow every day.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="hero-text">
-<h1>ABM MAHI</h1>
-<h3>CSE Student & Problem Solver</h3>
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container reveal">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-wrapper">
+                <!-- technical -->
+                <div class="glass-card">
+                    <h3 style="color: var(--primary);"><i class="fas fa-code" style="margin-right: 10px;"></i> Technical Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">HTML (Beginner/Intermediate)</span>
+                        <span class="skill-tag">Video Editing (Beginner)</span>
+                    </div>
+                </div>
+                <!-- creative -->
+                <div class="glass-card">
+                    <h3 style="color: var(--secondary);"><i class="fas fa-pencil-alt" style="margin-right: 10px;"></i> Creative Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">Story Writing (Good)</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Idea Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p>
-I am a passionate Computer Science student who loves building ideas 
-and solving problems with technology.
-</p>
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container reveal">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>📁 Portfolio Website</h3>
+                    <p>My personal portfolio website to showcase my journey, skills, and future vision.</p>
+                </div>
+                <div class="project-card">
+                    <h3>🎨 Brand Logo Design</h3>
+                    <p>Creative logo designs for brands and personal projects.</p>
+                </div>
+                <div class="project-card">
+                    <h3>🤖 AI Video Creation</h3>
+                    <p>Using AI tools to create engaging and creative video content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<br>
+    <!-- Journey -->
+    <section id="journey">
+        <div class="container reveal">
+            <h2 class="section-title">Journey</h2>
+            <div class="text-block">
+                <p>My journey in technology started with curiosity about how websites and digital systems work.</p>
+                <p style="margin: 1.5rem 0;">I chose Computer Science & Engineering to explore the world of programming and innovation. Every day I try to learn something new and improve my skills step by step.</p>
+                <p><span style="color: var(--secondary);">I believe consistency and curiosity can build a strong future.</span></p>
+            </div>
+        </div>
+    </section>
 
-<p><i>"I believe small ideas can build big futures."</i></p>
+    <!-- Vision -->
+    <section id="vision">
+        <div class="container reveal">
+            <h2 class="section-title">Vision</h2>
+            <div class="text-block" style="border-left-color: var(--primary);">
+                <p style="font-size: 1.3rem;">My goal is to build a technology company that impacts millions of people.</p>
+                <p style="margin-top: 1.5rem;">I want to create innovative digital solutions that solve real-world problems and make technology more useful for everyone.</p>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container reveal">
+            <h2 class="section-title">Contact</h2>
+            <div class="glass-card contact-info" style="max-width: 700px; margin: 0 auto;">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i> <span>abmmahee@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i> <span>abmmahi.com (future domain)</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+                <p style="margin-top: 2rem; color: var(--accent);"># small ideas, big futures</p>
+            </div>
+        </div>
+    </section>
 
-<img src="your-photo.jpg" alt="MAHI Photo">
+    <footer class="footer-note">
+        <p>© 2026 ABM MAHI — cyberpunk portfolio</p>
+    </footer>
 
-</section>
+    <!-- typing effect + scroll reveal -->
+    <script>
+        (function() {
+            // typing effect for tagline
+            const textEl = document.getElementById('typed-text');
+            if (textEl) {
+                const fullText = "CSE Student & Problem Solver";
+                let index = 0;
+                function typeNext() {
+                    if (index < fullText.length) {
+                        textEl.textContent += fullText.charAt(index);
+                        index++;
+                        setTimeout(typeNext, 80);
+                    } else {
+                        // keep blinking cursor (cursor managed by css border)
+                    }
+                }
+                typeNext();
+            }
 
+            // scroll reveal using Intersection Observer
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // optional: unobserve after reveal
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
-<section class="section" id="about">
+            reveals.forEach(r => observer.observe(r));
 
-<h2>About Me</h2>
+            // optional smooth hover glitch for nav (just for fun)
+            console.log('cyberpunk portfolio ready');
+        })();
+    </script>
 
-<p>
-Hello! I am ABM MAHI, a Computer Science & Engineering student at
-Pabna Polytechnic Institute.
-</p>
-
-<br>
-
-<p>
-I am passionate about technology, problem solving and creative thinking.
-My interests include web development, cybersecurity, artificial intelligence
-and digital creativity.
-</p>
-
-<br>
-
-<p>
-Besides coding, I enjoy story writing and exploring new ideas that can
-turn into meaningful technology solutions.
-</p>
-
-</section>
-
-
-<section class="section" id="skills">
-
-<h2>Skills</h2>
-
-<ul class="skills">
-
-<li>HTML — Beginner / Intermediate</li>
-<li>Story Writing — Good</li>
-<li>Video Editing — Beginner</li>
-<li>Problem Solving</li>
-
-</ul>
-
-</section>
-
-
-<section class="section" id="projects">
-
-<h2>Projects</h2>
-
-<div class="projects">
-
-<div class="card">
-<h3>Portfolio Website</h3>
-<p>My personal website to showcase my journey and skills.</p>
-</div>
-
-<div class="card">
-<h3>Brand Logo Design</h3>
-<p>Creative logo designs for personal and brand projects.</p>
-</div>
-
-<div class="card">
-<h3>AI Video Creation</h3>
-<p>Creating engaging video content using AI tools.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section" id="vision">
-
-<h2>Vision</h2>
-
-<p>
-My goal is to create a technology company that impacts millions of people.
-</p>
-
-<br>
-
-<p>
-I want to build innovative digital solutions that solve real world problems
-and make technology more useful for everyone.
-</p>
-
-</section>
-
-
-<section class="section contact" id="contact">
-
-<h2>Contact</h2>
-
-<p>Email:</p>
-<a href="mailto:abmmahee@gmail.com">abmmahee@gmail.com</a>
-
-<br>
-
-<p>Future Domain:</p>
-<p>abmmahi.com</p>
-
-</section>
-
-
-<footer>
-
-<p>© 2026 ABM MAHI | Future Tech Entrepreneur</p>
-
-</footer>
-
+    <!-- subtle background effect (optional moving gradient) -->
+    <style>
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.03) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(0,255,255,0.03) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
 </body>
 </html>
