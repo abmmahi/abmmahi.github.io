@@ -1,623 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABM MAHI · cyberfolio</title>
-    <!-- fonts & icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABM MAHI · future tech founder</title>
+  <!-- Google Fonts: Inter (clean, modern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.6;
+      font-weight: 400;
+    }
 
-        /* neon color vars */
-        :root {
-            --primary: #00ffff;
-            --secondary: #00ff9c;
-            --accent: #ff00ff;
-            --bg: #0a0a0a;
-            --card-bg: rgba(20, 20, 30, 0.7);
-            --glow-cyan: 0 0 10px #00ffff66, 0 0 20px #00ffff33;
-            --glow-magenta: 0 0 10px #ff00ff66, 0 0 20px #ff00ff33;
-        }
+    /* color variables */
+    :root {
+      --bg: #0a0a0a;
+      --card-bg: #111111;
+      --primary: #00ffff;
+      --secondary: #00ff9c;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --border-subtle: #222222;
+    }
 
-        /* custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #111;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-            box-shadow: var(--glow-cyan);
-        }
+    /* ---------- TYPOGRAPHY & UTILS ---------- */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-        /* reusable container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
 
-        section {
-            position: relative;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-        }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.4rem;
+    }
 
-        /* section titles */
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            display: inline-block;
-            color: var(--primary);
-            text-shadow: var(--glow-cyan);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.5rem;
-        }
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        /* glassmorphism cards */
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 1.8rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3), var(--glow-cyan);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .section-sm {
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,255,255,0.3), 0 0 20px #00ffff;
-            border-color: var(--secondary);
-        }
+    .text-muted {
+      color: var(--muted);
+      font-size: 1rem;
+    }
 
-        /* navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--primary);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+    .accent {
+      color: var(--primary);
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-shadow: var(--glow-cyan);
-            letter-spacing: 2px;
-        }
+    .accent-secondary {
+      color: var(--secondary);
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+    /* ---------- CARDS & LAYOUT ---------- */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.25s ease, border-color 0.2s, box-shadow 0.2s;
+    }
 
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: 0.3s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px -10px rgba(0, 255, 255, 0.1);
+    }
 
-        .nav-links a:hover {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            text-shadow: 0 0 8px var(--primary);
-        }
+    /* grid helpers */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
 
-        /* buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-            margin-right: 1rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid transparent;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-        }
+    .grid-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.2rem;
+    }
 
-        .btn-primary {
-            background: transparent;
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 15px var(--primary);
-        }
+    .grid-projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
 
-        .btn-primary:hover {
-            background: var(--primary);
-            color: #0a0a0a;
-            box-shadow: 0 0 30px var(--primary);
-            transform: scale(1.05);
-        }
+    /* ---------- BUTTONS ---------- */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0 1rem;
+    }
 
-        .btn-secondary {
-            background: transparent;
-            border-color: var(--accent);
-            color: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-        }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.2s ease;
+      border: 1.5px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+    }
 
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: #0a0a0a;
-            box-shadow: 0 0 30px var(--accent);
-        }
+    .btn-outline-primary {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
 
-        /* hero layout */
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+    .btn-outline-primary:hover {
+      background: var(--primary);
+      color: #000000;
+    }
 
-        .hero-left h1 {
-            font-size: 4rem;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
+    .btn-outline-secondary {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
 
-        .typed-tagline {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            min-height: 3rem;
-        }
+    .btn-outline-secondary:hover {
+      background: var(--secondary);
+      color: #000000;
+    }
 
-        #typed-text {
-            border-right: 3px solid var(--accent);
-            padding-right: 5px;
-            animation: blink 0.8s infinite;
-        }
+    /* ---------- HERO ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      align-items: center;
+      gap: 3rem;
+    }
 
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
+    .hero-content .tagline {
+      font-size: 1.3rem;
+      color: var(--secondary);
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
 
-        .quote {
-            margin: 1.5rem 0;
-            font-size: 1.2rem;
-            color: #ccc;
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-            font-style: italic;
-        }
+    .hero-quote {
+      font-size: 1.2rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      margin: 1.8rem 0 1rem;
+      color: #dddddd;
+      font-style: italic;
+    }
 
-        .hero-right {
-            display: flex;
-            justify-content: center;
-        }
+    .photo-placeholder {
+      width: 100%;
+      max-width: 340px;
+      margin-left: auto;
+      background: #1a1a1a;
+      border-radius: 30px;
+      aspect-ratio: 1/1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #333;
+      color: var(--muted);
+      transition: border 0.2s;
+    }
 
-        .avatar {
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: var(--glow-cyan), 0 0 50px var(--accent);
-            transition: 0.4s;
-            background: #1a1a2e;
-        }
+    .photo-placeholder i {
+      font-size: 5rem;
+      color: #2a2a2a;
+      margin-bottom: 0.5rem;
+    }
 
-        .avatar:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 40px var(--primary), 0 0 80px var(--accent);
-        }
+    .photo-placeholder span {
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
 
-        /* skills grid */
-        .skills-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
+    .photo-placeholder:hover {
+      border-color: var(--primary);
+    }
 
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            font-size: 1.6rem;
-        }
+    /* ---------- ABOUT / VISION / JOURNEY ---------- */
+    .about-text p {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
 
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+    .interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-top: 1.5rem;
+    }
 
-        .skill-tag {
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 30px;
-            padding: 0.5rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-            transition: 0.2s;
-        }
-        .skill-tag:hover {
-            background: var(--primary);
-            color: #0a0a0a;
-            box-shadow: var(--glow-cyan);
-        }
+    .interests span {
+      background: #1c1c1c;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      border: 1px solid #2a2a2a;
+      color: #ddd;
+    }
 
-        /* projects cards */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    /* skill items */
+    .skill-item {
+      background: #1a1a1a;
+      border-radius: 30px;
+      padding: 0.8rem 1.2rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #2a2a2a;
+      transition: 0.15s;
+    }
 
-        .project-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 24px;
-            padding: 2rem 1.5rem;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-        }
-        .project-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 40px var(--primary);
-        }
-        .project-card h3 {
-            color: var(--secondary);
-            margin-bottom: 0.8rem;
-        }
-        .project-card p {
-            color: #ddd;
-        }
+    .skill-item:hover {
+      border-color: var(--primary);
+      background: #1e1e1e;
+    }
 
-        /* journey & vision */
-        .text-block {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(0,0,0,0.3);
-            padding: 2rem;
-            border-radius: 30px;
-            border-left: 6px solid var(--accent);
-            border-right: 2px solid var(--primary);
-            box-shadow: var(--glow-magenta);
-        }
+    .skill-level {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 400;
+      background: #2a2a2a;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+    }
 
-        /* contact */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.3rem;
-        }
-        .contact-item i {
-            color: var(--primary);
-            font-size: 2rem;
-            width: 40px;
-            text-shadow: var(--glow-cyan);
-        }
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .social-links a {
-            color: #fff;
-            font-size: 2rem;
-            transition: 0.2s;
-            border: 1px solid var(--secondary);
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.4);
-        }
-        .social-links a:hover {
-            color: #0a0a0a;
-            background: var(--secondary);
-            box-shadow: 0 0 30px var(--secondary);
-            border-color: var(--secondary);
-            transform: translateY(-5px);
-        }
+    .future-skill {
+      border: 1px dashed #3a3a3a;
+      background: #151515;
+    }
 
-        /* scroll reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .future-skill .skill-level {
+      background: #00ff9c20;
+      color: var(--secondary);
+      border: 1px solid #00ff9c30;
+    }
 
-        /* footer / extra glow */
-        .footer-note {
-            text-align: center;
-            padding: 2rem;
-            color: #444;
-            border-top: 1px solid var(--primary);
-        }
+    /* project card */
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
 
-        /* responsive */
-        @media (max-width: 800px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-left {
-                order: 2;
-            }
-            .hero-right {
-                order: 1;
-            }
-            .navbar {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            .nav-links {
-                justify-content: center;
-            }
-            .skills-wrapper {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    .project-card p {
+      color: #b0b0b0;
+    }
+
+    /* contact & footer */
+    .contact-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-item i {
+      width: 2rem;
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: #cccccc;
+      font-size: 1.8rem;
+      transition: 0.15s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .future-domain {
+      background: #111111;
+      padding: 1rem 1.8rem;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid #2a2a2a;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .future-domain strong {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid #1e1e1e;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* responsiveness */
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .photo-placeholder {
+        margin: 0 auto;
+        max-width: 280px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .section, .section-sm {
+        padding: 3rem 1rem;
+      }
+      .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        text-align: center;
+      }
+    }
+
+    /* misc */
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #333, transparent);
+      margin: 2rem 0;
+    }
+
+    img, i {
+      user-select: none;
+    }
+
+    /* simple fade-in */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hero, .section {
+      animation: fadeUp 0.5s ease-out;
+    }
+  </style>
 </head>
 <body>
-    <!-- fixed navigation -->
-    <nav class="navbar">
-        <span class="logo">ABM MAHI</span>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#journey">Journey</a>
-            <a href="#vision">Vision</a>
-            <a href="#contact">Contact</a>
+
+  <!-- HERO SECTION -->
+  <section class="section" id="home">
+    <div class="hero">
+      <!-- left content -->
+      <div class="hero-content">
+        <h1>ABM MAHI</h1>
+        <div class="tagline">CSE Student & Problem Solver</div>
+        <p class="hero-quote">“I believe small ideas can build big futures.”</p>
+        <p class="text-muted" style="font-size: 1.1rem; max-width: 500px;">
+          I am a passionate Computer Science student who loves building ideas and solving problems with technology.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-outline-primary"><i class="fas fa-arrow-down" style="margin-right: 8px;"></i>View Projects</a>
+          <a href="#contact" class="btn btn-outline-secondary"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Contact Me</a>
         </div>
-    </nav>
+      </div>
+      <!-- photo placeholder (right) -->
+      <div class="photo-placeholder">
+        <i class="fas fa-user-astronaut"></i>
+        <span>PROFESSIONAL PHOTO</span>
+        <span style="font-size: 0.8rem; margin-top: 5px;">( placeholder )</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero section -->
-    <section id="home" style="padding-top: 120px;">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-left">
-                    <h1>ABM MAHI</h1>
-                    <div class="typed-tagline">
-                        <span id="typed-text"></span><span class="cursor"></span>
-                    </div>
-                    <p style="font-size: 1.2rem; margin: 1rem 0;">I am a passionate Computer Science student who loves building ideas and solving problems with technology.</p>
-                    <div class="quote">“I believe small ideas can build big futures.”</div>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <!-- avatar from dicebear (unique cyberpunk style) -->
-                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=ABMMAHI&backgroundColor=00ffff&radius=50&accessories=eyepatch&clothing=cyberpunk&facialHair=beardLight&hair=long&top=eyepatch" alt="ABM MAHI avatar" class="avatar">
-                </div>
-            </div>
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <div class="grid-2">
+      <div class="about-text">
+        <p>I'm ABM MAHI, a CSE student at <span class="accent">Pabna Polytechnic Institute</span>. Technology has always been my canvas — I love turning ideas into code, and problems into solutions.</p>
+        <p>Currently diving deep into web development, cybersecurity, and artificial intelligence. I think creatively and build patiently.</p>
+      </div>
+      <div>
+        <div style="background: #111; border-radius: 24px; padding: 1.8rem; border: 1px solid #222;">
+          <p style="color: #ccc; margin-bottom: 1rem; font-weight: 300;">🔥 core interests</p>
+          <div class="interests">
+            <span>Web Development</span>
+            <span>Cybersecurity</span>
+            <span>Artificial Intelligence</span>
+            <span>Creative Thinking</span>
+            <span>Story Writing</span>
+            <span>Video Creation</span>
+          </div>
+          <div style="margin-top: 1.8rem;">
+            <p><span class="accent-secondary">▹</span> Diploma in Engineering (CSE) – Pabna Polytechnic Institute</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Me -->
-    <section id="about">
-        <div class="container reveal">
-            <h2 class="section-title">About Me</h2>
-            <div class="glass-card" style="max-width: 900px; margin: 0 auto;">
-                <p style="font-size: 1.2rem;">Hello! I am <strong>ABM MAHI</strong>, a Computer Science & Engineering student currently studying at Pabna Polytechnic Institute.</p>
-                <p style="margin: 1.2rem 0;">I am passionate about technology, problem-solving, and creative thinking. My interests include web development, cybersecurity, artificial intelligence, and digital creativity.</p>
-                <p>Besides coding, I enjoy story writing and exploring new ideas that can turn into meaningful technology solutions.</p>
-                <p style="margin-top: 1.5rem; color: var(--primary);">My mission is simple — to learn, build, and grow every day.</p>
-            </div>
+  <!-- SKILLS SECTION (current + future) -->
+  <section class="section" id="skills">
+    <h2>Skills & Focus</h2>
+    <p class="text-muted" style="margin-bottom: 2rem;">Current skills & future directions</p>
+
+    <!-- current skills grid -->
+    <div style="margin-bottom: 2.5rem;">
+      <h3 style="font-weight: 400; margin-bottom: 1.2rem; font-size: 1.4rem; color: #dddddd;">⚡ current</h3>
+      <div class="grid-skills">
+        <div class="skill-item"><span>HTML</span><span class="skill-level">beginner/intermediate</span></div>
+        <div class="skill-item"><span>Story Writing</span><span class="skill-level">good</span></div>
+        <div class="skill-item"><span>Video Editing</span><span class="skill-level">beginner</span></div>
+        <div class="skill-item"><span>Problem Solving</span><span class="skill-level">analytical</span></div>
+      </div>
+    </div>
+
+    <!-- future skills -->
+    <div>
+      <h3 style="font-weight: 400; margin-bottom: 1.2rem; font-size: 1.4rem; color: #dddddd;">🚀 future focus</h3>
+      <div class="grid-skills">
+        <div class="skill-item future-skill"><span>Cybersecurity</span><span class="skill-level">next</span></div>
+        <div class="skill-item future-skill"><span>Artificial Intelligence</span><span class="skill-level">AI/ML</span></div>
+        <div class="skill-item future-skill"><span>Full Stack Development</span><span class="skill-level">vision</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="section" id="projects">
+    <h2>Projects</h2>
+    <div class="grid-projects">
+      <div class="card project-card">
+        <h3>Portfolio Website</h3>
+        <p class="text-muted">Personal website to showcase my journey, skills and vision. (minimal, custom)</p>
+        <div style="margin-top: 1.5rem;"><span style="background: #00ffff10; padding: 0.3rem 1rem; border-radius: 30px; color: #aaa; font-size: 0.8rem; border: 1px solid #00ffff20;">HTML/CSS only</span></div>
+      </div>
+      <div class="card project-card">
+        <h3>Brand Logo Design</h3>
+        <p class="text-muted">Creative logo design for personal and brand projects — simplicity with meaning.</p>
+        <div style="margin-top: 1.5rem;"><span style="background: #00ff9c10; padding: 0.3rem 1rem; border-radius: 30px; color: #aaa; font-size: 0.8rem; border: 1px solid #00ff9c20;">graphic</span></div>
+      </div>
+      <div class="card project-card">
+        <h3>AI Video Creation</h3>
+        <p class="text-muted">Using AI tools to create engaging videos and visual narratives.</p>
+        <div style="margin-top: 1.5rem;"><span style="background: #00ffff10; padding: 0.3rem 1rem; border-radius: 30px; color: #aaa; font-size: 0.8rem; border: 1px solid #00ffff20;">experimental</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY SECTION (short story) -->
+  <section class="section-sm" id="journey">
+    <h2>Journey</h2>
+    <div class="card" style="padding: 2rem;">
+      <p style="font-size: 1.2rem; font-style: italic; color: #e0e0e0;">“My curiosity about technology started with small questions: how do apps work? how are websites built? That spark led me to Computer Science. Every bug fixed, every concept learned, brings me closer to building things that matter.”</p>
+      <p style="margin-top: 1.5rem; color: var(--muted);">— from tinkering to engineering</p>
+    </div>
+  </section>
+
+  <!-- VISION SECTION -->
+  <section class="section-sm" id="vision">
+    <h2>Vision</h2>
+    <div class="grid-2" style="align-items: center;">
+      <div class="card" style="background: #0c0c0c; border-color: #2c2c2c;">
+        <p style="font-size: 1.3rem; font-weight: 400;">I dream of creating a technology company that impacts millions of people — building tools that simplify life, and solutions that matter. One step at a time.</p>
+      </div>
+      <div style="text-align: center;">
+        <span class="future-domain"><i class="fas fa-globe" style="margin-right: 8px; color: var(--secondary);"></i>future domain <strong>abmmahi.com</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <div class="contact-flex">
+      <!-- email with icon -->
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:abmmahee@gmail.com" style="color: white; text-decoration: none; border-bottom: 1px dashed #444;">abmmahee@gmail.com</a>
+      </div>
+      <!-- social placeholders -->
+      <div>
+        <p class="text-muted" style="margin-bottom: 0.5rem;">find me (placeholders)</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
-    </section>
+      </div>
+      <!-- future domain note (already shown in vision, but again minimal) -->
+      <div style="margin-top: 0.5rem;">
+        <span class="future-domain" style="background: transparent; padding-left: 0;"><i class="fas fa-rocket" style="color: var(--primary);"></i> future: abmmahi.com</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container reveal">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-wrapper">
-                <!-- technical -->
-                <div class="glass-card">
-                    <h3 style="color: var(--primary);"><i class="fas fa-code" style="margin-right: 10px;"></i> Technical Skills</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">HTML (Beginner/Intermediate)</span>
-                        <span class="skill-tag">Video Editing (Beginner)</span>
-                    </div>
-                </div>
-                <!-- creative -->
-                <div class="glass-card">
-                    <h3 style="color: var(--secondary);"><i class="fas fa-pencil-alt" style="margin-right: 10px;"></i> Creative Skills</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Story Writing (Good)</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Idea Development</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 ABM MAHI — Future Tech Entrepreneur</p>
+    <p style="margin-top: 0.8rem; font-size: 0.8rem;">built with minimalism & intention</p>
+  </footer>
 
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container reveal">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>📁 Portfolio Website</h3>
-                    <p>My personal portfolio website to showcase my journey, skills, and future vision.</p>
-                </div>
-                <div class="project-card">
-                    <h3>🎨 Brand Logo Design</h3>
-                    <p>Creative logo designs for brands and personal projects.</p>
-                </div>
-                <div class="project-card">
-                    <h3>🤖 AI Video Creation</h3>
-                    <p>Using AI tools to create engaging and creative video content.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journey -->
-    <section id="journey">
-        <div class="container reveal">
-            <h2 class="section-title">Journey</h2>
-            <div class="text-block">
-                <p>My journey in technology started with curiosity about how websites and digital systems work.</p>
-                <p style="margin: 1.5rem 0;">I chose Computer Science & Engineering to explore the world of programming and innovation. Every day I try to learn something new and improve my skills step by step.</p>
-                <p><span style="color: var(--secondary);">I believe consistency and curiosity can build a strong future.</span></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vision -->
-    <section id="vision">
-        <div class="container reveal">
-            <h2 class="section-title">Vision</h2>
-            <div class="text-block" style="border-left-color: var(--primary);">
-                <p style="font-size: 1.3rem;">My goal is to build a technology company that impacts millions of people.</p>
-                <p style="margin-top: 1.5rem;">I want to create innovative digital solutions that solve real-world problems and make technology more useful for everyone.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container reveal">
-            <h2 class="section-title">Contact</h2>
-            <div class="glass-card contact-info" style="max-width: 700px; margin: 0 auto;">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i> <span>abmmahee@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-globe"></i> <span>abmmahi.com (future domain)</span>
-                </div>
-                <div class="social-links">
-                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-                <p style="margin-top: 2rem; color: var(--accent);"># small ideas, big futures</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer-note">
-        <p>© 2026 ABM MAHI — cyberpunk portfolio</p>
-    </footer>
-
-    <!-- typing effect + scroll reveal -->
-    <script>
-        (function() {
-            // typing effect for tagline
-            const textEl = document.getElementById('typed-text');
-            if (textEl) {
-                const fullText = "CSE Student & Problem Solver";
-                let index = 0;
-                function typeNext() {
-                    if (index < fullText.length) {
-                        textEl.textContent += fullText.charAt(index);
-                        index++;
-                        setTimeout(typeNext, 80);
-                    } else {
-                        // keep blinking cursor (cursor managed by css border)
-                    }
-                }
-                typeNext();
-            }
-
-            // scroll reveal using Intersection Observer
-            const reveals = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // optional: unobserve after reveal
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-
-            reveals.forEach(r => observer.observe(r));
-
-            // optional smooth hover glitch for nav (just for fun)
-            console.log('cyberpunk portfolio ready');
-        })();
-    </script>
-
-    <!-- subtle background effect (optional moving gradient) -->
-    <style>
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.03) 0%, transparent 30%),
-                        radial-gradient(circle at 80% 70%, rgba(0,255,255,0.03) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-    </style>
+  <!-- optional minimal JavaScript (smooth scroll not needed, but small console greet) -->
+  <script>
+    (function() {
+      console.log("ABM MAHI · portfolio · future-focused");
+      // you can add any future interactivity here
+    })();
+  </script>
+  <!-- (script is optional and minimal) -->
 </body>
 </html>
