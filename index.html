@@ -36,49 +36,50 @@
     </div>
     
     <!-- Navigation -->
-<nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
-    <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
-    
-    <!-- Desktop Menu - Row View (hidden on mobile) -->
-    <div class="hidden md:flex md:space-x-1">
-        <a class="nav-link active" href="#home">Home</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#skills">Skills</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#blog">Blog</a>
-        <a class="nav-link" href="#contact">Contact</a>
-    </div>
-    
-    <!-- Mobile Menu Button (3 Dots / Hamburger) -->
-    <div class="mobile-menu-btn md:hidden">
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
+        <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
+        
+        <!-- Desktop Menu - Row View (hidden on mobile) -->
+        <div class="hidden md:flex md:space-x-1">
+            <a class="nav-link active" href="#home">Home</a>
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#skills">Skills</a>
+            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="#blog">Blog</a>
+            <a class="nav-link" href="#contact">Contact</a>
         </div>
-    </div>
-</nav>
+        
+        <!-- Mobile Menu Button (3 Dots / Hamburger) -->
+        <div class="mobile-menu-btn md:hidden">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-<!-- Mobile Navigation Menu - Column View (hidden by default) -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay">
-    <div class="mobile-nav-menu">
-        <div class="mobile-nav-header">
-            <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500">ABM MAHI</span>
-            <div class="close-menu-btn">&times;</div>
-        </div>
-        <div class="mobile-nav-links">
-            <a class="mobile-nav-link" href="#home">🏠 Home</a>
-            <a class="mobile-nav-link" href="#about">👤 About</a>
-            <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
-            <a class="mobile-nav-link" href="#projects">📁 Projects</a>
-            <a class="mobile-nav-link" href="#blog">📝 Blog</a>
-            <a class="mobile-nav-link" href="#contact">📧 Contact</a>
-        </div>
-        <div class="mobile-nav-footer">
-            <p class="text-gray-500 text-xs">© 2025 ABM MAHI</p>
+    <!-- Mobile Navigation Menu - Column View (hidden by default) -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-menu">
+            <div class="mobile-nav-header">
+                <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500">ABM MAHI</span>
+                <div class="close-menu-btn">&times;</div>
+            </div>
+            <div class="mobile-nav-links">
+                <a class="mobile-nav-link" href="#home">🏠 Home</a>
+                <a class="mobile-nav-link" href="#about">👤 About</a>
+                <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
+                <a class="mobile-nav-link" href="#projects">📁 Projects</a>
+                <a class="mobile-nav-link" href="#blog">📝 Blog</a>
+                <a class="mobile-nav-link" href="#contact">📧 Contact</a>
+            </div>
+            <div class="mobile-nav-footer">
+                <p class="text-gray-500 text-xs">© 2025 ABM MAHI</p>
+            </div>
         </div>
     </div>
-</div>
+
     <!-- Hero Section -->
     <section id="home" class="relative overflow-hidden bg-gray-900 text-white flex items-center min-h-screen">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -334,7 +335,6 @@
             <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10">Featured Projects</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <!-- Project 1 - Voice Over -->
                 <div class="group bg-gray-800/50 border border-gray-700/40 rounded-xl p-6 hover:border-purple-500/40 hover:-translate-y-1 transition-all">
                     <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
@@ -482,75 +482,5 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // Rotating Text Animation
-        const phrases = ['Content Writing · Blogging', 'Video Editing · Photography', 'Social Media Management', 'Visual Storytelling', 'Creative Content Creation'];
-        let idx = 0;
-        const rotEl = document.getElementById('rotating-text');
-        if (rotEl) {
-            setInterval(() => {
-                rotEl.style.opacity = '0';
-                setTimeout(() => {
-                    idx = (idx + 1) % phrases.length;
-                    rotEl.textContent = phrases[idx];
-                    rotEl.style.opacity = '1';
-                }, 400);
-            }, 3000);
-        }
-        
-        // GLightbox
-        if (typeof GLightbox !== 'undefined') {
-            GLightbox({ selector: '.glightbox' });
-        }
-        
-        // Loader
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('page-loader');
-            if (loader) {
-                setTimeout(() => {
-                    loader.classList.add('loader-hide');
-                    setTimeout(() => loader.style.display = 'none', 500);
-                }, 1500);
-            }
-        });
-
-        // Back to Top Button Functionality
-        const backToTopBtn = document.getElementById('backToTop');
-        if (backToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
-                }
-            });
-
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-
-        // Mobile Navigation Toggle
-        const navBtn = document.querySelector('.nav-btn');
-        const mobNav = document.querySelector('.mob-nav');
-        if (navBtn && mobNav) {
-            navBtn.addEventListener('click', () => {
-                mobNav.classList.toggle('hidden');
-            });
-        }
-
-        // Close mobile nav after clicking a link
-        const mobLinks = document.querySelectorAll('.mob-nav-link');
-        mobLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobNav) {
-                    mobNav.classList.add('hidden');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
