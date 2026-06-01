@@ -30,6 +30,35 @@ body {
 .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }
+
+/* ============================================
+   Navigation Styles
+   ============================================ */
+
+.nav-glass {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(75, 85, 99, 0.4);
+}
+
+.nav-link {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #9ca3af;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #22d3ee;
+}
+
+.nav-link.active {
+    color: #22d3ee;
+    border-bottom: 2px solid #22d3ee;
+}
+
 /* ============================================
    Mobile Menu with 3 Dots - Column View
    ============================================ */
@@ -162,6 +191,7 @@ body {
 .mobile-nav-menu {
     cursor: default;
 }
+
 /* ============================================
    Profile Picture Glow Animation
    ============================================ */
@@ -287,6 +317,7 @@ body {
     0%, 100% { opacity: 0.7; }
     50% { opacity: 1; }
 }
+
 /* ============================================
    Back to Top Button
    ============================================ */
