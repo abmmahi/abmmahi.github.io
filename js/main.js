@@ -44,24 +44,56 @@
             });
         })();
         
-        // Mobile Navigation Toggle
-        (function initMobileNav() {
-            const navBtn = document.querySelector('.nav-btn');
-            const mobNav = document.querySelector('.mob-nav');
-            if (navBtn && mobNav && !window._mobileNavInitialized) {
-                window._mobileNavInitialized = true;
-                navBtn.addEventListener('click', () => {
-                    mobNav.classList.toggle('hidden');
-                });
-                
-                // Close mobile nav after clicking a link
-                document.querySelectorAll('.mob-nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobNav.classList.add('hidden');
-                    });
-                });
-            }
-        })();
+       // ============================================
+// Mobile Menu Toggle (3 Dots Menu)
+// ============================================
+
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+const closeMenuBtn = document.querySelector('.close-menu-btn');
+
+// Open menu
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileNavOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Close menu function
+function closeMobileMenu() {
+    mobileNavOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close on close button click
+if (closeMenuBtn) {
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+}
+
+// Close on overlay click
+if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener('click', (e) => {
+        if (e.target === mobileNavOverlay) {
+            closeMobileMenu();
+        }
+    });
+}
+
+// Close on link click
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileMenu();
+    });
+});
+
+// Close on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNavOverlay && mobileNavOverlay.classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
         
         // Back to Top Button
         (function initBackToTop() {
