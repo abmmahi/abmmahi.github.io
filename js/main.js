@@ -113,7 +113,97 @@
     }
 })();
 
-// ========== 6. Active Link Highlight on Scroll ==========
+// ========== 6. Skill Bars Animation on Scroll ==========
+(function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    
+    function animateSkillBars() {
+        skillBars.forEach(bar => {
+            const rect = bar.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+                bar.style.transition = "width 1s ease-in-out";
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', animateSkillBars);
+    window.addEventListener('load', animateSkillBars);
+})();
+
+// ========== 7. Page Transition Loader (No Scroll Effect) ==========
+(function initPageTransition() {
+    const transitionLoader = document.getElementById('pageTransitionLoader');
+    if (!transitionLoader) return;
+    
+    // Select all navigation links (Desktop + Mobile)
+    const desktopLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    // Function to show loader and go to section without scroll
+    function showLoaderAndGoToSection(targetId) {
+        // Show loader
+        transitionLoader.classList.add('active');
+        
+        // After loader duration, jump to section (no scroll animation)
+        setTimeout(() => {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Direct jump without smooth scroll
+                window.scrollTo({
+                    top: targetSection.offsetTop - 60,
+                    behavior: 'auto'
+                });
+            }
+            
+            // Update active link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${targetId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Hide loader
+            setTimeout(() => {
+                transitionLoader.classList.remove('active');
+            }, 200);
+        }, 800);
+    }
+    
+    // Add click event to desktop links
+    desktopLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#' && href !== '/' && !this.classList.contains('searchBtn1')) {
+                e.preventDefault();
+                const targetId = href.replace('#', '');
+                showLoaderAndGoToSection(targetId);
+            }
+        });
+    });
+    
+    // Add click event to mobile links
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#' && href !== '/') {
+                e.preventDefault();
+                const targetId = href.replace('#', '');
+                
+                // Close mobile menu
+                const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+                if (mobileNavOverlay) {
+                    mobileNavOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                showLoaderAndGoToSection(targetId);
+            }
+        });
+    });
+})();
+
+// ========== 8. Active Link Highlight on Scroll (Single Function) ==========
 (function initActiveLink() {
     if (!window._activeLinkInitialized) {
         window._activeLinkInitialized = true;
@@ -148,118 +238,6 @@
     }
 })();
 
-// ========== 7. Skill Bars Animation on Scroll ==========
-(function initSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-bar');
-    
-    function animateSkillBars() {
-        skillBars.forEach(bar => {
-            const rect = bar.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50) {
-                bar.style.transition = "width 1s ease-in-out";
-            }
-        });
-    }
-    
-    window.addEventListener('scroll', animateSkillBars);
-    window.addEventListener('load', animateSkillBars);
-})();
-
-// ========== 8. Smooth Scroll for Navigation Links ==========
-(function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
-            const href = this.getAttribute("href");
-            if (href && href !== "#") {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-            }
-        });
-    });
-})();
-
 // ========== 9. Console Welcome Message ==========
 console.log("%c🚀 ABM MAHI Portfolio Loaded Successfully!", "color: #a855f7; font-size: 16px; font-weight: bold;");
 console.log("%c✨ Creativity · Consistency · Purpose", "color: #22d3ee; font-size: 14px;");
-// ============================================
-// Page Transition Loader - No Scroll Effect
-// ============================================
-
-(function initPageTransition() {
-    const transitionLoader = document.getElementById('pageTransitionLoader');
-    if (!transitionLoader) return;
-    
-    // Select all navigation links
-    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    
-    // Function to show loader and go to section without scroll
-    function showLoaderAndGoToSection(targetId) {
-        // Show loader
-        transitionLoader.classList.add('active');
-        
-        // After loader duration, jump to section (no scroll animation)
-        setTimeout(() => {
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                // Direct jump without smooth scroll
-                window.scrollTo({
-                    top: targetSection.offsetTop - 60, // Adjust for navbar height
-                    behavior: 'auto' // 'auto' means instant jump, no scroll animation
-                });
-            }
-            
-            // Hide loader after a short delay
-            setTimeout(() => {
-                transitionLoader.classList.remove('active');
-            }, 200);
-        }, 800); // Loader shows for 0.8 seconds
-    }
-    
-    // Add click event to all navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            // Ignore search button and empty links
-            if (href && href !== '#' && href !== '/' && !this.classList.contains('searchBtn1')) {
-                e.preventDefault();
-                const targetId = href.replace('#', '');
-                showLoaderAndGoToSection(targetId);
-            }
-        });
-    });
-})();
-
-// Update active link based on scroll position
-function updateActiveLink() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    let current = '';
-    const scrollPosition = window.scrollY + 100;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = sectionId;
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-window.addEventListener('scroll', updateActiveLink);
-window.addEventListener('load', updateActiveLink);
