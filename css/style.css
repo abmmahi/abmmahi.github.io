@@ -30,68 +30,50 @@ body {
 .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }
-/* ============================================
-   Responsive Navigation Styles
-   ============================================ */
+<!-- Navigation -->
+<nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
+    <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
+    
+    <!-- Desktop Menu - Row View (hidden on mobile) -->
+    <div class="hidden md:flex md:space-x-1">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#blog">Blog</a>
+        <a class="nav-link" href="#contact">Contact</a>
+    </div>
+    
+    <!-- Mobile Menu Button (3 Dots / Hamburger) -->
+    <div class="mobile-menu-btn md:hidden">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
 
-/* Desktop Navigation - Row View */
-.nav-link {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #9ca3af;
-    transition: all 0.3s;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.nav-link:hover {
-    color: #22d3ee;
-}
-
-.nav-link.active {
-    color: #22d3ee;
-    border-bottom: 2px solid #22d3ee;
-}
-
-/* Mobile Navigation - Column View */
-.mob-nav {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    z-index: 40;
-    background: rgba(17, 24, 39, 0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(75, 85, 99, 0.4);
-}
-
-.mob-nav-link {
-    padding: 14px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #9ca3af;
-    width: 100%;
-    text-align: center;
-    transition: all 0.3s;
-    border-bottom: 1px solid rgba(75, 85, 99, 0.2);
-    display: block;
-}
-
-.mob-nav-link:last-child {
-    border-bottom: none;
-}
-
-.mob-nav-link:hover {
-    color: #22d3ee;
-    background: rgba(34, 211, 238, 0.1);
-}
-
-/* Glass Effect */
-.glass {
-    background: rgba(17, 24, 39, 0.8);
-    backdrop-filter: blur(12px);
-}
+<!-- Mobile Navigation Menu - Column View (hidden by default) -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <div class="mobile-nav-menu">
+        <div class="mobile-nav-header">
+            <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500">ABM MAHI</span>
+            <div class="close-menu-btn">&times;</div>
+        </div>
+        <div class="mobile-nav-links">
+            <a class="mobile-nav-link" href="#home">🏠 Home</a>
+            <a class="mobile-nav-link" href="#about">👤 About</a>
+            <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
+            <a class="mobile-nav-link" href="#projects">📁 Projects</a>
+            <a class="mobile-nav-link" href="#blog">📝 Blog</a>
+            <a class="mobile-nav-link" href="#contact">📧 Contact</a>
+        </div>
+        <div class="mobile-nav-footer">
+            <p class="text-gray-500 text-xs">© 2025 ABM MAHI</p>
+        </div>
+    </div>
+</div>
 /* ============================================
    Profile Picture Glow Animation
    ============================================ */
