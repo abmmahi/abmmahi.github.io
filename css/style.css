@@ -30,17 +30,11 @@ body {
 .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }
-
 /* ============================================
-   Navigation Styles
+   Responsive Navigation Styles
    ============================================ */
 
-.nav-glass {
-    background: rgba(17, 24, 39, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(75, 85, 99, 0.4);
-}
-
+/* Desktop Navigation - Row View */
 .nav-link {
     padding: 8px 16px;
     font-size: 14px;
@@ -48,6 +42,7 @@ body {
     color: #9ca3af;
     transition: all 0.3s;
     cursor: pointer;
+    display: inline-block;
 }
 
 .nav-link:hover {
@@ -59,6 +54,7 @@ body {
     border-bottom: 2px solid #22d3ee;
 }
 
+/* Mobile Navigation - Column View */
 .mob-nav {
     position: fixed;
     top: 60px;
@@ -71,13 +67,19 @@ body {
 }
 
 .mob-nav-link {
-    padding: 12px;
+    padding: 14px 20px;
     font-size: 16px;
     font-weight: 500;
     color: #9ca3af;
     width: 100%;
     text-align: center;
     transition: all 0.3s;
+    border-bottom: 1px solid rgba(75, 85, 99, 0.2);
+    display: block;
+}
+
+.mob-nav-link:last-child {
+    border-bottom: none;
 }
 
 .mob-nav-link:hover {
@@ -85,11 +87,11 @@ body {
     background: rgba(34, 211, 238, 0.1);
 }
 
+/* Glass Effect */
 .glass {
     background: rgba(17, 24, 39, 0.8);
     backdrop-filter: blur(12px);
 }
-
 /* ============================================
    Profile Picture Glow Animation
    ============================================ */
