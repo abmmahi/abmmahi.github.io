@@ -36,32 +36,49 @@
     </div>
     
     <!-- Navigation -->
-    <nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
-        <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
-        <div class="flex space-x-4">
-            <i class="searchBtn bi bi-search text-sm cursor-pointer md:hidden"></i>
-            <i class="nav-btn bi bi-list cursor-pointer md:hidden"></i>
+<nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
+    <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
+    
+    <!-- Desktop Menu - Row View (hidden on mobile) -->
+    <div class="hidden md:flex md:space-x-1">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#blog">Blog</a>
+        <a class="nav-link" href="#contact">Contact</a>
+    </div>
+    
+    <!-- Mobile Menu Button (3 Dots / Hamburger) -->
+    <div class="mobile-menu-btn md:hidden">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <div class="hidden md:flex md:space-x-1">
-            <a class="nav-link active" href="#home">Home</a>
-            <a class="nav-link" href="#about">About</a>
-            <a class="nav-link" href="#skills">Skills</a>
-            <a class="nav-link" href="#projects">Projects</a>
-            <a class="nav-link" href="#blog">Blog</a>
-            <a class="nav-link" href="#contact">Contact</a>
-            <i class="searchBtn1 nav-link bi bi-search text-sm cursor-pointer"></i>
-        </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Mobile Navigation -->
-    <a class="mob-nav-link" href="#home">🏠 Home</a>
-    <a class="mob-nav-link" href="#about">👤 About</a>
-    <a class="mob-nav-link" href="#skills">⚡ Skills</a>
-    <a class="mob-nav-link" href="#projects">📁 Projects</a>
-    <a class="mob-nav-link" href="#blog">📝 Blog</a>
-    <a class="mob-nav-link" href="#contact">📧 Contact</a>
+<!-- Mobile Navigation Menu - Column View (hidden by default) -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <div class="mobile-nav-menu">
+        <div class="mobile-nav-header">
+            <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500">ABM MAHI</span>
+            <div class="close-menu-btn">&times;</div>
+        </div>
+        <div class="mobile-nav-links">
+            <a class="mobile-nav-link" href="#home">🏠 Home</a>
+            <a class="mobile-nav-link" href="#about">👤 About</a>
+            <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
+            <a class="mobile-nav-link" href="#projects">📁 Projects</a>
+            <a class="mobile-nav-link" href="#blog">📝 Blog</a>
+            <a class="mobile-nav-link" href="#contact">📧 Contact</a>
+        </div>
+        <div class="mobile-nav-footer">
+            <p class="text-gray-500 text-xs">© 2025 ABM MAHI</p>
+        </div>
+    </div>
 </div>
-
     <!-- Hero Section -->
     <section id="home" class="relative overflow-hidden bg-gray-900 text-white flex items-center min-h-screen">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
