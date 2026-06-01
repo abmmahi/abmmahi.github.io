@@ -30,50 +30,138 @@ body {
 .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }
-<!-- Navigation -->
-<nav class="nav-glass sticky top-0 z-50 flex justify-between items-center p-3 px-6 md:px-20">
-    <a class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500" href="/">ABM MAHI</a>
-    
-    <!-- Desktop Menu - Row View (hidden on mobile) -->
-    <div class="hidden md:flex md:space-x-1">
-        <a class="nav-link active" href="#home">Home</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#skills">Skills</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#blog">Blog</a>
-        <a class="nav-link" href="#contact">Contact</a>
-    </div>
-    
-    <!-- Mobile Menu Button (3 Dots / Hamburger) -->
-    <div class="mobile-menu-btn md:hidden">
-        <div class="menu-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</nav>
+/* ============================================
+   Mobile Menu with 3 Dots - Column View
+   ============================================ */
 
-<!-- Mobile Navigation Menu - Column View (hidden by default) -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay">
-    <div class="mobile-nav-menu">
-        <div class="mobile-nav-header">
-            <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-purple-500">ABM MAHI</span>
-            <div class="close-menu-btn">&times;</div>
-        </div>
-        <div class="mobile-nav-links">
-            <a class="mobile-nav-link" href="#home">🏠 Home</a>
-            <a class="mobile-nav-link" href="#about">👤 About</a>
-            <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
-            <a class="mobile-nav-link" href="#projects">📁 Projects</a>
-            <a class="mobile-nav-link" href="#blog">📝 Blog</a>
-            <a class="mobile-nav-link" href="#contact">📧 Contact</a>
-        </div>
-        <div class="mobile-nav-footer">
-            <p class="text-gray-500 text-xs">© 2025 ABM MAHI</p>
-        </div>
-    </div>
-</div>
+/* Mobile Menu Button (3 Dots / Hamburger) */
+.mobile-menu-btn {
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-icon span {
+    width: 100%;
+    height: 2px;
+    background: #22d3ee;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Navigation Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile Navigation Menu */
+.mobile-nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+}
+
+.mobile-nav-overlay.active .mobile-nav-menu {
+    right: 0;
+}
+
+/* Mobile Nav Header */
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.close-menu-btn {
+    font-size: 32px;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.close-menu-btn:hover {
+    color: #22d3ee;
+}
+
+/* Mobile Nav Links - Column View */
+.mobile-nav-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+}
+
+.mobile-nav-link {
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #d1d5db;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-nav-link:hover {
+    color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    transform: translateX(5px);
+}
+
+/* Mobile Nav Footer */
+.mobile-nav-footer {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* Hide menu when clicking outside */
+.mobile-nav-overlay.close-on-click {
+    cursor: pointer;
+}
+
+.mobile-nav-menu {
+    cursor: default;
+}
 /* ============================================
    Profile Picture Glow Animation
    ============================================ */
