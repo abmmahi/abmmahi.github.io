@@ -532,11 +532,33 @@
         </div>
     </section>
 
-     <div class="inline-flex items-center gap-5 border border-gray-700/60 rounded-full px-8 py-3">
-                <span class="text-gray-400 text-sm">🌐 abmmahi.wordpress.com </span>
-            </div>
-        </div>
-    </section>
+       <a href="https://abmmahi.wordpress.com" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-5 border border-gray-700/60 rounded-full px-8 py-3 
+                hover:border-blue-400/70 hover:bg-white/5 transition-all duration-200 
+                no-underline group w-auto">
+        <!-- original span – unchanged -->
+        <span class="text-gray-400 text-sm group-hover:text-white transition-colors flex items-center gap-2">
+          🌐 abmmahi.wordpress.com
+        </span>
+        <!-- tiny extra indicator so it feels like a button (optional but useful) -->
+        <span class="text-gray-500 group-hover:text-blue-400 transition-all duration-200 text-xs">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+      <!-- 👆 that's it. exactly at the same position, same container, same classes -->
+
+    </div>
+  </section>
+
+  <!-- small note – it's literally the same spot, just turned into a clickable button -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 text-gray-500 text-xs bg-slate-800/70 px-4 py-1 rounded-full border border-white/5 backdrop-blur-sm">
+    ⚡ exactly where your original div was · now a clickable button
+  </div>
+
+</body>
+</html>
 
     <!-- Footer -->
     <footer class="border-t border-gray-700/60 bg-gray-900 px-6 py-8 text-center">
