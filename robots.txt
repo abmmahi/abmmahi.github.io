@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abmmahi.online/sitemap.xml
